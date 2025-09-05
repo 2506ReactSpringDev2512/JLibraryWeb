@@ -13,5 +13,6 @@
 		<jsp:include page="/WEB-INF/views/jlibrary/main.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div> -->
+	<jsp:include page="/WEB-INF/views/book/search.jsp"></jsp:include>
 </body>
 </html>

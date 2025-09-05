@@ -56,27 +56,27 @@
             <div class="book-list">
                 <!-- JSP에서 반복문을 통해 생성할 책 리스트 항목 -->
                 <div class="book-item">
-                    <div class="book-cover"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></div>
+                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
                     <div class="book-info">
-                        <h3>책 제목</h3>
+                        <h3><a href="/bookinfo">책 제목</a></h3>
                         <p>저자 : 헤르만 헤세</p>
                         <p>출판사 : 지하실</p>
                     </div>
                     <span>대출 가능</span>
                 </div>
                 <div class="book-item">
-                    <div class="book-cover"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></div>
+                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
                     <div class="book-info">
-                        <h3>데미안</h3>
+                        <h3><a href="/bookinfo">데미안</a></h3>
                         <p>저자 : 헤르만 헤세</p>
                         <p>출판사 : 지하실</p>
                     </div>
                     <span>대출 가능</span>
                 </div>
                 <div class="book-item">
-                    <div class="book-cover"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></div>
+                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
                     <div class="book-info">
-                        <h3>노인과 바다</h3>
+                        <h3><a href="/bookinfo">노인과 바다</a></h3>
                         <p>저자 : 어니스트 헤밍웨이</p>
                         <p>출판사 : 삼성 출판사</p>
                     </div>
