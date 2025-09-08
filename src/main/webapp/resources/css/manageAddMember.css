@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+		 
+
+        #add_member {
+            padding: 40px;
+        }
+
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 30px;
+        }
+
+
+        .gender {
+            display: flex;
+        }
+
+
+        .form-row label {
+            width: 120px;
+            text-align: left;
+            position: relative;
+        }
+
+
+        .form-row > label::before {
+            content: '*';
+            color: red;
+           
+        }
+
+
+        input[type=text],
+        input[type=password],
+        input[type=number] {
+            width: 350px;
+            height: 50px;
+            border: none;
+            background-color: #ced4da;
+            padding: 0 10px;
+        }
+
+
+        input[type="submit"] {
+            width: 40%;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            margin: 0 auto;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+
+        #subtitleArea {
+            padding: 100px 60px 0px 0px;
+            width: 1000px;
+           
+        }
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+
+
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+
+
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        #subtitleArea p {
+            display: inline-block;  /* 한 줄에 자연스럽게 */
+            margin-right: 4px;      /* p태그 사이 간격 */
+            color: gray;            /* 기본 색 회색 */
+        }
+
+
+        #subtitleArea p:last-child {
+            color: black;           /* 마지막만 검정 */
+            font-weight: 500;      /* 강조 효과 */
+        }

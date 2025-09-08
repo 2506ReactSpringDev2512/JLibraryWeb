@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+#subtitleArea {
+            padding: 100px 60px 0px 0px;
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+
+
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+
+
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        #subtitleArea p {
+            display: inline-block;  /* 한 줄에 자연스럽게 */
+            margin-right: 4px;      /* p태그 사이 간격 */
+            color: gray;            /* 기본 색 회색 */
+        }
+
+
+        #subtitleArea p:last-child {
+            color: black;           /* 마지막만 검정 */
+            font-weight: 500;      /* 강조 효과 */
+        }
+
+
+        #loanStatus {
+            font-size: 28px;
+            ;
+        }
+
+
+        #privacy {
+            font-size: 28px;
+        }
+
+
+        .box {
+            width: 750px;
+            height: 350px;
+            background-color: white;
+            margin: 90px;
+            padding: 5px;
+            border: 1.5px solid rgb(139, 139, 139);
+            border-radius: 2px;
+            text-align: center;
+            position: static;
+        }
+
+
+        .but1 {
+            width: 55%;
+            border: 0;
+            outline: none;
+            font-size: 25px;
+            background: rgb(221, 221, 221);
+            color: black;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin: 72px;
+        }
+
+
+        .but2 {
+            width: 55%;
+            border: 0;
+            outline: none;
+            font-size: 25px;
+            background: rgb(221, 221, 221);
+            color: black;
+            padding: 20px;
+            margin-top: 20;
+            cursor: pointer;
+            border-radius: 2px;
+            margin: -40px;
+        }

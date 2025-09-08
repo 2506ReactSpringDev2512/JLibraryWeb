@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+#subtitleArea {
+            padding: 100px 0px 0px 0px;
+            width: 1150px;
+            margin: 0 auto;
+        }
+
+
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1300px;
+
+
+
+
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+
+
+
+
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+
+
+        #subtitleArea p {
+            display: inline-block;  /* 한 줄에 자연스럽게 */
+            margin-right: 4px;      /* p태그 사이 간격 */
+            color: gray;            /* 기본 색 회색 */
+        }
+
+
+
+
+        #subtitleArea p:last-child {
+            color: black;           /* 마지막만 검정 */
+            font-weight: 500;      /* 강조 효과 */
+        }
+
+        #tbody {
+		    display: flex;
+		    justify-content: center;
+		    margin-top: 30px;
+		    width: 100%;
+		}
+
+
+        #findPwd {
+            padding: 40px;
+        }
+
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 30px;
+        }
+
+
+        .form-row label {
+            width: 120px;
+            text-align: left;
+        }
+
+
+        input[type=text] {
+            width: 350px;
+            height: 50px;
+            border: none;
+            background-color: #ced4da;
+            padding: 0 20px;
+        }
+
+
+        .submit-wrapper {
+            display: flex;
+            justify-content: center; /* 가운데 정렬 */
+            margin-top: 80px;        /* 위 여백 */
+        }
+
+
+        .submit-wrapper input[type="submit"] {
+            width: 35%;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ced4da;
+
+
+            transform: translateX(-20px); /* ← 왼쪽으로 20px 이동 */
+        }
+
+
+        .phone-input-wrapper input[type="text"] {
+            width: 350px;
+            height: 50px;
+            padding: 0 20px;
+            background-color: #ced4da;
+            border: none;
+            border-radius: 2px;
+            margin-right: 10px; /* 버튼과 간격 */
+        }
+
+
+        .verify-btn {
+            height: 45px;
+            padding: 0 15px;
+            background-color: #495057;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap; /* 버튼 글자가 줄 바꿈되지 않도록 */
+        }

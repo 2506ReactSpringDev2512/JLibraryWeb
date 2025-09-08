@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+#subtitleArea {
+            padding: 100px 0px 50px 0px;
+            width: 1150px;
+            margin: 0 auto;
+        }
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1300px;
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        #subtitleArea p {
+            display: inline-block; /* 한 줄에 자연스럽게 */
+            margin-right: 4px; /* p태그 사이 간격 */
+            color: gray; /* 기본 색 회색 */
+        }
+
+
+        #subtitleArea p:last-child {
+            color: black; /* 마지막만 검정 */
+            font-weight: 500; /* 강조 효과 */
+        }
+
+
+
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+
+
+
+.form-row label {
+    width: 120px;
+    text-align: left;
+    position: relative;
+}
+
+
+.form-row > label::before {
+    content: '*';
+    color: red;
+}
+.form-row textarea {
+    width: calc(100% - 120px) !important;
+    height: 100px;
+    border: none;
+    background: rgb(232, 232, 232);
+}
+.infocontent{
+    align-items: flex-start;
+}
+
+
+input {
+    width: calc(100% - 120px);
+    height: 50px;
+    border: none;
+    background-color: rgb(232, 232, 232);
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+
+input[type="submit"] {
+    width: 160px;
+    padding: 15px;
+    /* margin-top: 20px; 속성을 사용해 상단 여백 조절 */
+    margin: 20px auto; 
+    display: block; /* margin: auto;를 적용하기 위해 block 요소로 변경 */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    position: static; /* position 속성을 제거하여 문서 흐름에 맞게 위치 */
+    right: auto; /* right 속성 제거 */
+}
+
+
+
+
+input[name="show"] {
+    min-height: 200px;
+    text-align: left;
+}
+
+
+#tbody {
+    display: block;
+    margin: 80px auto; /* 중앙 정렬을 위해 margin: 0 auto;를 추가 */
+    width: 600px; /* 원하는 너비로 조절 (예: 600px, 700px 등) */
+}

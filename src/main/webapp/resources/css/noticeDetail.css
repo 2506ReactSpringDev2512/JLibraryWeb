@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+#subtitleArea {
+            padding: 100px 0px 50px 0px;
+            width: 1150px;
+            margin: 0 auto;
+        }
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1300px;
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        #subtitleArea p {
+            display: inline-block; /* 한 줄에 자연스럽게 */
+            margin-right: 4px; /* p태그 사이 간격 */
+            color: gray; /* 기본 색 회색 */
+        }
+
+
+        #subtitleArea p:last-child {
+            color: black; /* 마지막만 검정 */
+            font-weight: 500; /* 강조 효과 */
+        }
+
+
+        .detail-container {
+            width: 1000px;
+            margin: 0 auto;
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+            margin-top: 50px;
+        }
+       
+        .detail-header {
+            border-bottom: 1px solid #4C4C4C;
+            padding-top: 20px;
+            padding-bottom: 13px;
+            text-align: center;
+        }
+
+
+        .detail-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 13px;
+        }
+
+
+        .detail-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+            padding: 0 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 13px;
+        }
+
+
+        .detail-content {
+            padding: 20px;
+            margin-top: 30px;
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 500px;
+        }
+       
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 60px;
+        }
+
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: black;
+        }
+
+
+        .nav-buttons button {
+            padding: 12px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+
+        .nav-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+
+
+        .prev-next {
+        	width:1000px;
+            margin-top: 50px;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 50px;
+            margin-left: 150px;
+        }
+
+
+        .prev-next-item {
+            display: flex;
+            padding: 15px 0;
+            padding-left: 70px;
+            gap: 90px;
+        }
+
+
+        .prev-next-item:last-child {
+            border-top: 1px solid #ccc;
+        }
+
+
+        .prev-next-item a {
+            color: #555;
+            text-decoration: none;
+        }
+
+
+        .prev-next-item a:hover {
+            text-decoration: underline;
+        }

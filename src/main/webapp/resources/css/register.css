@@ -1,35 +1,65 @@
 @charset "UTF-8";
 
+/* ==================
+   공통 스타일
+   ================== */
+#subtitleArea {
+    padding: 100px 0px 50px 0px;
+    width: 1150px;
+    margin: 0 auto;
+}
+
+#subtitle {
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+    max-width: 1300px;
+    padding-bottom: 25px;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#subtitleArea p {
+    display: inline-block;
+    margin-right: 4px;
+    color: gray;
+}
+
+#subtitleArea p:last-child {
+    color: black;
+    font-weight: 500;
+}
+
+
+/* ==================
+   회원 가입 폼 스타일
+   ================== */
 #tbody {
-    display: block;
+    display: flex; /* flex 컨테이너로 설정 */
+    justify-content: center; /* 내부 요소를 수평 중앙 정렬 */
     margin-top: 30px;
+    width: 100%;
 }
 
 #register {
+    width: 600px; /* 폼의 전체 너비 설정 */
     padding: 40px;
-}
+    margin: 0 auto; /* #register 자체를 중앙 정렬 (보완책) */
+    background-color: #fff; /* 배경색을 넣어 폼 영역 확인 */
 
-#containerAll {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
 .form-row {
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px; /* 입력 필드 사이 간격 조절 */
     gap: 30px;
-}
-
-.gender {
-    display: flex;
 }
 
 .form-row label {
     width: 120px;
+    flex-shrink: 0;
     text-align: left;
     position: relative;
 }
@@ -37,57 +67,56 @@
 .form-row > label::before {
     content: '*';
     color: red;
-    
 }
 
-input[type=text],
-input[type=password],
-input[type=number] {
-    width: 350px;
+/* 모든 입력 필드에 적용 (radio 제외) */
+.form-row input:not([type="radio"]),
+.form-row textarea {
+    flex-grow: 1; /* 남은 공간을 채우도록 함 */
+    width: auto; /* flex-grow와 함께 사용 */
     height: 50px;
     border: none;
     background-color: #ced4da;
     padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* 비밀번호 재확인 input을 감싸는 div의 flex-grow */
+.form-row .password-confirm-group {
+    flex-grow: 1; /* 이 div가 남은 공간을 채우도록 함 */
+    display: flex; /* 내부 input과 p를 flex로 관리 */
+    flex-direction: column; /* 세로로 쌓기 */
+    width: auto; /* flex-grow와 함께 사용 */
+}
+
+
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.gender label {
+    width: auto;
 }
 
 input[type="submit"] {
-    width: 40%;
+    width: 200px;
     padding: 15px;
-    margin-top: 20px;
-    display: flex;
-    margin: 0 auto;
+    margin: 20px auto;
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    display: block;
+    background-color: #007bff; /* 버튼 색상 변경 */
+    color: white; /* 버튼 글씨 색상 */
 }
 
-#subtitleArea {
-    padding: 30px 60px 0px 0px;
-    width: 1000px;
-    display: flex;
-    align-items: center;
-}
-
-#subtitle {
-    border-bottom: 2px solid black;
-    display: flex;
-    align-items: center;
-    max-width: 1000px;
-
-    padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
-
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-#subtitleArea p {
-    display: inline-block;  /* 한 줄에 자연스럽게 */
-    margin-right: 4px;      /* p태그 사이 간격 */
-    color: gray;            /* 기본 색 회색 */
-}
-
-#subtitleArea p:last-child {
-    color: black;           /* 마지막만 검정 */
-    font-weight: 500;      /* 강조 효과 */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px; /* 입력 필드 바로 아래로 */
+    margin-left: 0; /* 왼쪽 정렬 */
+    display: none;
+    padding-left: 5px; /* 에러 메시지 살짝 안쪽으로 */
 }

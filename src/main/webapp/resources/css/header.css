@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+#container {
+margin: 0 auto;
+width: 1300px;
+}
 
 a {
 text-decoration: none;
@@ -8,7 +18,7 @@ text-decoration: none;
 #header {
     width: 100%;
     height: 200px;
-    background-color: gray;
+    background-color: #879D71;
 }
 #logo {
     width: 200px;
@@ -59,7 +69,7 @@ color: #fff;
     
 }
 #topMenu>li>a:hover {
-    background-color: aqua;
+    background-color: #FCFAEE;
     color: black;
 }
 #topMenu>li>a {

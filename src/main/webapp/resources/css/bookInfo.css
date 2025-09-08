@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+#subtitleArea {
+    padding: 100px 0px 0px 0px;
+    width: 1150px;
+    margin: 0 auto;
+}
+
+#subtitle {
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+    max-width: 1300px;
+    padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#subtitleArea p {
+    display: inline-block;  /* 한 줄에 자연스럽게 */
+    margin-right: 4px;      /* p태그 사이 간격 */
+    color: gray;            /* 기본 색 회색 */
+}
+
+#subtitleArea p:last-child {
+    color: black;          /* 마지막만 검정 */
+    font-weight: 500;      /* 강조 효과 */
+}
+
+/* Custom styles for the book information page */
+#bookInfoSection {
+    display: flex;
+    gap: 50px;
+    margin-top: 120px;
+    width: 1000px;
+    margin-left:150px;
+}
+
+#bookCover {
+    flex-shrink: 0;
+    width: 250px;
+    height: 350px;
+    background-color: #ddd;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#bookDetails {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+#bookTitle {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    /* 한 줄 ... 처리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer; /* 클릭 가능한 요소임을 나타냄 */
+}
+
+#bookTitle.expanded {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.info-row {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    word-wrap: break-word; /* 긴 텍스트 줄바꿈 처리 (하위 호환성을 위해 유지) */
+    overflow-wrap: break-word; /* 긴 텍스트 줄바꿈 처리 */
+}
+
+.info-label {
+    font-weight: 600;
+    color: #555;
+    display: inline-block;
+    width: 100px;
+    word-wrap: normal; /* 라벨은 줄바꿈 안 함 */
+}
+
+.info-text {
+    color: #333;
+}
+
+#status {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4CAF50; /* Green for "Available" */
+    margin-top: 20px;
+    text-align: right;
+}
+
+#descriptionSection {
+    margin-top: 50px;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    line-height: 1.8;
+    color: #444;
+    overflow-wrap: break-word; /* 상세 설명 텍스트 줄바꿈 처리 */
+    width: 1000px;
+    margin-left:150px;
+}
+
+#buttonSection {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
+
+.action-button-list {
+    padding: 15px 59px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.action-button-lend {
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.gray-button {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.black-button {
+    background-color: #333;
+    color: #fff;
+}
+
+.gray-button:hover {
+    background-color: #e0e0e0;
+}
+
+.black-button:hover {
+    background-color: #000;
+}
+
+.action-button-lend>a {
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+.action-button-list>a {
+    text-decoration: none;
+    color: #333;
+}

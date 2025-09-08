@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+#subtitleArea {
+            padding: 30px 0px 50px 0px;
+            width: 1150px;
+            margin: 0 auto;
+        }
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1300px;
+            padding-bottom: 25px; /* 글자랑 밑줄 사이 간격 */
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        #subtitleArea p {
+            display: inline-block; /* 한 줄에 자연스럽게 */
+            margin-right: 4px; /* p태그 사이 간격 */
+            color: gray; /* 기본 색 회색 */
+        }
+
+
+        #subtitleArea p:last-child {
+            color: black; /* 마지막만 검정 */
+            font-weight: 500; /* 강조 효과 */
+        }
+
+
+        #notice-content-container {
+            width: 100%;
+            padding: 0 70px;
+            margin-top: 50px;
+        }
+       
+        #notice-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+       
+        .member-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+
+        .member-table th, .member-table td {
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+
+        .member-table thead th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+
+        .member-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+       
+        /* 공지사항 테이블 */
+        .notice-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+
+        .notice-table th, .notice-table td {
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+
+        .notice-table thead th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+
+        .notice-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+       
+        .notice-table td:nth-child(2) {
+            text-align: left;
+        }
+       
+        /* 검색 영역 */
+        #searchArea {
+            position: relative;
+            width: 350px;
+        }
+
+
+        #searchArea input[type="text"] {
+            width: 100%;
+            padding: 8px 45px 8px 15px;
+            border: 1px solid #d0d0d0;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            height: 50px;
+        }
+
+
+        #searchArea input[type="text"]:focus {
+            border-color: #999;
+            box-shadow: 0 0 0 px rgba(153, 153, 153, 0.2);
+        }
+
+
+        #searchArea button {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+       
+        .manager-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            padding: 0 70px;
+        }
+       
+        .manager-buttons button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+
+        /* 페이지네이션 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            gap: 5px;
+        }
+
+
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        .pagination button.active {
+            background-color: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: black;
+        }

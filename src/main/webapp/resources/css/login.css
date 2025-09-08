@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+#containerAll {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+
+
+
+        #subtitleArea {
+            padding: 30px 60px 0px 0px;
+            width: 1000px;
+           
+        }
+
+
+
+
+        #subtitle {
+            border-bottom: 2px solid black;
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+
+
+
+
+            padding-bottom: 15px; /* 글자랑 밑줄 사이 간격 */
+
+
+
+
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+
+
+        #subtitleArea p {
+            display: inline-block;  /* 한 줄에 자연스럽게 */
+            margin-right: 4px;      /* p태그 사이 간격 */
+            color: gray;            /* 기본 색 회색 */
+        }
+
+
+
+
+        #subtitleArea p:last-child {
+            color: black;           /* 마지막만 검정 */
+            font-weight: 500;      /* 강조 효과 */
+        }
+
+
+
+
+        form {
+            margin-top: 80px;
+        }
+
+
+
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 30px;
+        }
+
+
+
+
+        .form-row label {
+            width: 120px;
+            text-align: left;
+        }
+
+
+
+
+        input[type=text],
+        input[type=password] {
+            width: 350px;
+            height: 30px;
+            border: none;
+            background-color: #ced4da;
+            padding: 20px;
+            border-radius: 2px;
+        }
+
+
+
+
+        .alink {
+            display: flex;
+            justify-content: space-around;
+            width: fit-content; /* 자식 컨텐츠에 딱 맞게 */
+            gap: 0;
+            margin: 30px auto 60px;
+        }
+
+
+
+
+        .alink a {
+            margin: 0px 0px;
+            padding: 0 40px 0 40px;
+            text-decoration: none;
+            color: #000000;      
+        }
+
+
+
+
+        .alink a:not(:first-child) {
+            border-left: 1px solid #999;
+            padding: 0 50px;          /* 선과 텍스트 사이 여백 */
+            margin: 0 10px 0 10px;           /* 선과 앞 링크 사이 여백 */
+        }
+
+
+
+
+        input[value="로그인"] {
+            width: 60%;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            margin: 0 auto;
+            cursor: pointer;
+            border: none;
+            border-radius: 2px;
+            background-color: #ced4da;
+        }

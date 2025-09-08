@@ -8,11 +8,6 @@
 <title>제이도서관</title>
 </head>
 <body>
-	<!--<div id="container">	
-		<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/jlibrary/main.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	</div> -->
-	<jsp:include page="/WEB-INF/views/book/search.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/admin/manageBook.jsp"></jsp:include>
 </body>
 </html>
