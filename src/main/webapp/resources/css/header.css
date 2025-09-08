@@ -39,16 +39,10 @@ text-decoration: none;
 #loginHeader a{
     margin-left: 0px;
     font-size: 14px;
+    margin-right: 2px;
 }
-a {
-text-decoration: none; 
-color: #fff;
-}
-#clickLogin {
-    margin-right: 2px;   /* 선과 다음 요소 간격 */
-}
-#clickLogin::after {
-    content: "";
+#loginHeader a::after{
+	content: "";
     display: inline-block;
     width: 1px;              /* 선 두께 */
     height: 14px;            /* 글자 높이에 맞춤 */
@@ -56,6 +50,13 @@ color: #fff;
     margin-left: 20px;       /* 글자와 선 사이 간격 */
     margin-right: 15px;      /* 선과 다음 요소 간격 */
 }
+
+a {
+text-decoration: none; 
+color: #fff;
+}
+
+
 #nav {
     width: 1000px;
     height: 100px;

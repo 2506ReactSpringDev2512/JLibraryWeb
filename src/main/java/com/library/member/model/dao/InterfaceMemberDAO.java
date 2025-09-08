@@ -1,5 +1,10 @@
 package com.library.member.model.dao;
 
-public interface InterfaceMemberDAO {
+import java.sql.Connection;
+import java.sql.SQLException;
 
+import com.library.member.model.vo.Member;
+
+public interface InterfaceMemberDAO {
+	public Member checkLogin(Member member, Connection conn) throws SQLException;
 }

@@ -3,9 +3,9 @@
 #containerAll {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            margin-top: 100px;
+            margin-bottom: 150px;
             align-items: center;
-            min-height: 100vh;
         }
 
 

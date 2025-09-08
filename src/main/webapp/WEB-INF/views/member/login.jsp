@@ -11,35 +11,25 @@
                 <p>메인</p> <p>></p> <p>로그인</p>
             </div>
            
-            <form action="/login" method="">
+            <form action="/login" method="post">
                 <div class="form-row">
-                    <input type="text" placeholder="아이디" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required>
+                    <input type="text" name="memberId" placeholder="아이디" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required>
                 </div>
 
 
-
-
                 <div class="form-row">
-                    <input type="password" placeholder="비밀번호" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required>
+                    <input type="password" name="memberPwd" placeholder="비밀번호" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required>
                 </div>
-
-
 
 
                 <div class="alink">
                     <a href="#">비밀번호 찾기</a>
                     <a href="#">회원가입</a>
-               
                 </div>
-
-
-
 
                 <input type="submit" value="로그인">
             </form>
         </div>
-	
-	
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </div>
