@@ -11,13 +11,13 @@ import java.io.IOException;
  * Servlet implementation class NoticeDetail
  */
 @WebServlet("/notice/detail")
-public class NoticeDetail extends HttpServlet {
+public class NoticeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetail() {
+    public NoticeDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

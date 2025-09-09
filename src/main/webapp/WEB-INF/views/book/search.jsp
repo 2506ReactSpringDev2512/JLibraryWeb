@@ -16,24 +16,21 @@
         <div id="searchArea-box">
             <!-- 검색 필터 -->
             <div class="search-options">
-                <label>
-                    <input type="radio" name="searchType" value="bookName" checked>
-                    <span class="ml-2">도서명</span>
-                </label>
-                <label>
-                    <input type="radio" name="searchType" value="author">
-                    <span class="ml-2">저자</span>
-                </label>
-                <label>
-                    <input type="radio" name="searchType" value="publisher">
-                    <span class="ml-2">출판사</span>
-                </label>
-            </div>
+			    <label>
+			        <input type="radio" name="searchType" value="title_nm" ${searchType == 'title_nm' ? 'checked' : ''}> 도서명
+			    </label>
+			    <label>
+			        <input type="radio" name="searchType" value="authr_nm" ${searchType == 'authr_nm' ? 'checked' : ''}> 저자
+			    </label>
+			    <label>
+			        <input type="radio" name="searchType" value="publisher_nm" ${searchType == 'publisher_nm' ? 'checked' : ''}> 출판사
+			    </label>
+			</div>
 
             <!-- 검색 영역 -->
             <div id="searchArea">
-                <form action="/search" method="post">
-                    <input type="text" name="memberId" placeholder="도서검색">
+                <form action="/search" method="get">
+                    <input type="text" name="keyword" placeholder="도서검색">
                     <button type="submit">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -48,9 +45,9 @@
         <!-- 검색 결과 및 리스트 -->
         <div>
             <div id="textList">
-                <span>00개가 검색되었습니다.</span>
+                <span>${totalItems }개가 검색되었습니다.</span>
                 <div id="nemoText">
-                    <span>Page 1/100</span>
+                    <span>Page ${page}/${totalPages}</span>
                 </div>
             </div>
 

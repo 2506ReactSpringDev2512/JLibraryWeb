@@ -29,8 +29,8 @@ public class BookDAO implements InterfaceBookDAO{
 	    }
 	    
 	    // Oracle에서 OFFSET과 FETCH를 사용한 페이지네이션 쿼리
-	    String query = "SELECT * FROM BOOK_TBL WHERE " + searchType + " LIKE ? ORDER BY " + sortBy + " " + order 
-	                 + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+	    String query = "SELECT * FROM BOOK_TBL WHERE " + searchType + " LIKE ? ORDER BY " + sortBy + " " + order
+	             + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 	    pstmt = conn.prepareStatement(query);
 	    pstmt.setString(1, "%" + keyword + "%");
 	    pstmt.setInt(2, offset);  // 시작 인덱스
@@ -49,7 +49,6 @@ public class BookDAO implements InterfaceBookDAO{
 	    }
         rset.close();
 		pstmt.close();
-		conn.close();
 		return books;
 	}
 

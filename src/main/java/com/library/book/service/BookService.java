@@ -37,7 +37,7 @@ public class BookService implements InterfaceBookService {
 
 	public int getTotalPages(String searchType, String keyword) {
 		int itemsPerPage = 10;  // 한 페이지당 도서 수
-        int totalItems = 0;
+        int totalItems = 0; 
         Connection conn = null;
         
         try {
@@ -55,6 +55,20 @@ public class BookService implements InterfaceBookService {
 	    int endPage = Math.min(totalPages, currentPage + range); // 끝 페이지
 
 	    return new int[]{startPage, endPage};
+	}
+
+	public int getTotalItems(String searchType, String keyword) {
+		int totalItems = 0;
+        Connection conn = null;
+
+        try {
+            conn = jdbcTemplate.getConnection();  // DB 연결
+            totalItems = bDao.getTotalItems(searchType, keyword, conn);  // 전체 도서 수 조회
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalItems;
 	}
 
 }

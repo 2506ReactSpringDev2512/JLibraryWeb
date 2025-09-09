@@ -45,12 +45,19 @@ public class SearchServlet extends HttpServlet {
             }
         }
 
+        if (searchType == null || searchType.trim().isEmpty()) {
+        	searchType = "title_nm";  // 기본값 설정
+        }
+        
         String sortBy = request.getParameter("sortBy") != null ? request.getParameter("sortBy") : "title_nm";
         String order = request.getParameter("order") != null ? request.getParameter("order") : "asc";
 
         BookService bookService = new BookService();
         List<Book> books = bookService.searchBooks(searchType, keyword, page, sortBy, order);
         int totalPages = bookService.getTotalPages(searchType, keyword);
+        int totalItems = bookService.getTotalItems(searchType, keyword);  // totalItems 값 확인
+        
+        System.out.println("Total Items: " + totalItems);
 
         // 페이지 범위 계산
         int[] pageRange = bookService.getPageRange(page, totalPages);
@@ -61,8 +68,10 @@ public class SearchServlet extends HttpServlet {
         System.out.println("Current Page: " + page);
         System.out.println("Books size: " + books.size());
 
+        
         request.setAttribute("books", books);
         request.setAttribute("totalPages", totalPages);
+        request.setAttribute("totalItems", totalItems);
         request.setAttribute("page", page);
         request.setAttribute("startPage", startPage);
         request.setAttribute("endPage", endPage);
@@ -70,6 +79,9 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("keyword", keyword);
         request.setAttribute("sortBy", sortBy);
         request.setAttribute("order", order);
+        
+        System.out.println("Search Type: " + searchType);  // 추가된 로그
+        System.out.println("Keyword: " + keyword);  // 추가된 로그
 
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/search.jsp");
         view.forward(request, response);
