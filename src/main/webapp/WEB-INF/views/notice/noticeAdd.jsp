@@ -40,7 +40,7 @@
 
 
         <div class="form-buttons">
-            <button>글 작성</button>
+            <button><a href="${pageContext.request.contextPath}/notice">글 작성</button>
         </div>
 	
 	

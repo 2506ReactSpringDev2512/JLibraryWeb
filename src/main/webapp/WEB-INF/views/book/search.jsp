@@ -32,7 +32,7 @@
             <!-- 검색 영역 -->
             <div id="searchArea">
                 <form action="/search" method="post">
-                    <input type="text" name="memberId" placeholder="도서검색">
+                    <input type="text" name="bookId" placeholder="도서검색">
                     <button type="submit">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
                             <circle cx="11" cy="11" r="8"></circle>

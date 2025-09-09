@@ -57,14 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
             1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
             1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
             1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-             
+            
         </p>
     </div>
 
     <!-- 버튼 섹션 -->
     <div id="buttonSection">
-        <button class="action-button-list gray-button"><a href="/search">목록</a></button>
-        <button class="action-button-lend black-button"><a href="">대출하기</a></button>
+        <button class="action-button-list gray-button"><a href="${pageContext.request.contextPath}/search">목록</a></button>
+        <button class="action-button-lend black-button">
+        <a href="${pageContext.request.contextPath}/lendinfo" 
+           onclick="return confirm('이 도서를 대출하시겠습니까?') && (alert('도서가 성공적으로 대출되었습니다!'), true);">대출하기</a>
+    </button>
     </div>
 	
 	

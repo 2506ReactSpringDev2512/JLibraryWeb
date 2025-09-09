@@ -110,7 +110,7 @@
             </table>
         </div>
         <div class="manager-buttons">
-            <button>글쓰기</button>
+            <button><a href="${pageContext.request.contextPath}/notice/add">글쓰기</button>
         </div>
         <!-- 페이지네이션 -->
         <div class="pagination">
