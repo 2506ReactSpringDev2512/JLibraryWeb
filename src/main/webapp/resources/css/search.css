@@ -119,11 +119,11 @@
 
 .book-item {
     display: flex;
-    -border: 1px solid #e0e0e0;
     border-top: 1px solid #e0e0e0;
-    -border-radius: 8px;
     padding: 20px;
     align-items: center;
+    width: 100%;  /* 부모 요소 크기 설정 */
+    position: relative;
 }
 
 .book-item:last-child {
@@ -132,6 +132,8 @@
 
 .book-item span {
     font-size: 17px;
+    position: absolute; /* 오른쪽 끝에 고정하기 위해 absolute 사용 */
+    right: 10px; /* 오른쪽 끝에 10px 간격 */
 }
 
 .book-cover {
@@ -142,7 +144,16 @@
     margin-right: 20px;
 }
 
+.book-cover img {
+    width: 120px;   /* 고정 너비 */
+    height: 160px;  /* 고정 높이 */
+    object-fit: cover;  /* 이미지가 박스를 채우도록 설정 */
+}
+
 .book-info {
+    display: block;  /* 텍스트가 잘리도록 block 형태로 처리 */
+    max-width: 700px;  /* 너비를 적당히 제한 */
+    overflow: hidden;  /* 넘친 텍스트 숨김 */
     flex-grow: 1;
 }
 
@@ -150,6 +161,11 @@
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 30px;
+    
+    /* 긴 텍스트를 한 줄로 줄이고, 넘치면 '...' 처리 */
+    white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+    overflow: hidden;    /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘칠 경우 '...' 표시 */
 }
 
 .book-info p {

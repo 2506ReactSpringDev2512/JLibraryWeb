@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="../resources/css/search.css">
 <link rel="stylesheet" href="../resources/css/container.css">
 
@@ -55,49 +56,42 @@
 
             <div class="book-list">
                 <!-- JSP에서 반복문을 통해 생성할 책 리스트 항목 -->
-                <div class="book-item">
-                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
-                    <div class="book-info">
-                        <h3><a href="/bookinfo">책 제목</a></h3>
-                        <p>저자 : 헤르만 헤세</p>
-                        <p>출판사 : 지하실</p>
-                    </div>
-                    <span>대출 가능</span>
-                </div>
-                <div class="book-item">
-                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
-                    <div class="book-info">
-                        <h3><a href="/bookinfo">데미안</a></h3>
-                        <p>저자 : 헤르만 헤세</p>
-                        <p>출판사 : 지하실</p>
-                    </div>
-                    <span>대출 가능</span>
-                </div>
-                <div class="book-item">
-                    <div class="book-cover"><a href="/bookinfo"><img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover"></a></div>
-                    <div class="book-info">
-                        <h3><a href="/bookinfo">노인과 바다</a></h3>
-                        <p>저자 : 어니스트 헤밍웨이</p>
-                        <p>출판사 : 삼성 출판사</p>
-                    </div>
-                    <span>대출 불가</span>
-                </div>
+                <c:forEach var="book" items="${books}">
+			        <div class="book-item">
+			            <div class="book-cover"><a href="/bookinfo"><img src="${empty book.image_url ? 'https://placehold.co/120x160/E0E0E0/fff' : book.image_url}" alt="Book Cover"></a></div>
+			            <div class="book-info">
+			                <h3><a href="/bookinfo">${book.title_nm}</a></h3>
+			                <p>저자 : ${book.authr_nm}</p>
+			                <p>출판사 : ${book.publisher_nm}</p>
+			            </div>
+			            <span>${book.lend_yn }</span>
+			        </div>
+			    </c:forEach>
             </div>
 
             <!-- 페이지네이션 -->
             <div class="pagination">
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>&gt;</button>
-            </div>
+			    <!-- Previous 버튼 -->
+			    <c:if test="${page > 1}">
+			        <a href="/search?searchType=${searchType}&keyword=${keyword}&page=${page-1}&sortBy=${sortBy}&order=${order}">
+			            <button>이전</button>
+			        </a>
+			    </c:if>
+			
+			    <!-- 페이지 버튼들 -->
+			    <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+			        <a href="/search?searchType=${searchType}&keyword=${keyword}&page=${i}&sortBy=${sortBy}&order=${order}">
+			            <button class="${page == i ? 'active' : ''}">${i}</button>
+			        </a>
+			    </c:forEach>
+			
+			    <!-- Next 버튼 -->
+			    <c:if test="${page < totalPages}">
+			        <a href="/search?searchType=${searchType}&keyword=${keyword}&page=${page+1}&sortBy=${sortBy}&order=${order}">
+			            <button>다음</button>
+			        </a>
+			    </c:if>
+			</div>
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
