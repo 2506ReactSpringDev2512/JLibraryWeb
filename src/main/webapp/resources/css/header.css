@@ -51,7 +51,7 @@ text-decoration: none;
     margin-right: 15px;      /* 선과 다음 요소 간격 */
 }
 
-a {
+#header a {
 text-decoration: none; 
 color: #fff;
 }
