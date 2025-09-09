@@ -14,7 +14,7 @@
 
         <div id="tbody">
             <div id="register">
-                <form action="" method="" onsubmit="return validateForm()">
+                <form action="/register" method="post" onsubmit="return validateForm()">
                     <div class="form-row">
                         <label>아이디</label>
                         <input type="text" name="memberId" placeholder="아이디를 입력해주세요(6~15자)" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required>
@@ -34,7 +34,7 @@
 
                     <div class="form-row">
                         <label>이름</label>
-                        <input type="text" pattern="[가-힣]{2,5}" required>
+                        <input type="text" name="memberName" pattern="[가-힣]{2,5}" required>
                     </div>
 
                     <div class="form-row">

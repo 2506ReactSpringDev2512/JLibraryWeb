@@ -40,4 +40,21 @@ public class MemberDAO implements InterfaceMemberDAO{
 		return member;
 	}
 
+	public int insertMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO MEMBER_TBL VALUES(?, ?, ?, ?, ?, ?, DEFAULT)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberId());
+		pstmt.setString(2, member.getMemberPwd());
+		pstmt.setString(3, member.getMemberName());
+		pstmt.setString(5, member.getGender());
+		pstmt.setString(4, member.getPhone());
+		pstmt.setInt(6, member.getAge());
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+
 }

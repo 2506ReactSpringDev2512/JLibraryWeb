@@ -29,6 +29,17 @@ public class MemberService implements InterfaceMemberService{
 		return mOne;
 	}
 
+	public int insertMember(Member member) {
+		int result = 0;
+		Connection conn = jdbcTemplate.getConnection();
+		try {
+			result = mDao.insertMember(member, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 
 }
