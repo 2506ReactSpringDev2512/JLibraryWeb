@@ -24,24 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- 도서 정보 섹션 -->
     <div id="bookInfoSection">
         <div id="bookCover">
-            <img src="https://placehold.co/250x350/E0E0E0/fff" alt="Book Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="${empty book.image_url ? 'https://placehold.co/250x350/E0E0E0/fff' : book.image_url}" alt="Book Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
         </div>
         <div id="bookDetails">
-            <h2 id="bookTitle">데미안 1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는</h2>
+            <h2 id="bookTitle">${book.title_nm}</h2>
             <div class="info-row">
-                <span class="info-label">저자 </span><span class="info-text"> 헤르만 헤세</span>
+                <span class="info-label">저자 </span><span class="info-text"> ${book.authr_nm}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">출판사 </span><span class="info-text"> 자화상</span>
+                <span class="info-label">출판사 </span><span class="info-text"> ${book.publisher_nm}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">발행처 </span><span class="info-text"> 헤르만 헤세 / 출판사 : 자화상</span>
+                <span class="info-label">ISBN </span><span class="info-text"> ${book.isbn_no}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">ISBN </span><span class="info-text"> 9788972756608</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">가격 </span><span class="info-text"> 12,000원</span>
+                <span class="info-label">가격 </span><span class="info-text"> ${book.price}원</span>
             </div>
             <div id="status">
                 대출 가능
@@ -52,12 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- 도서 상세 설명 섹션 -->
     <div id="descriptionSection">
         <p>
-            1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-            1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-            1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-            1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-            1919년 간행된 헤세의 소설. 소년 싱클레어가 자기자신을 자각해 가는 과정을 그린 작품이며, 제1차 세계대전 후 혼미한 독일의 청년들에게 큰 반향을 안겨주었다. 소년 싱클레어는
-             
+            ${book.book_intrcn_cn }
         </p>
     </div>
 

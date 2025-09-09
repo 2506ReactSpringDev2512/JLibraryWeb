@@ -55,9 +55,9 @@
                 <!-- JSP에서 반복문을 통해 생성할 책 리스트 항목 -->
                 <c:forEach var="book" items="${books}">
 			        <div class="book-item">
-			            <div class="book-cover"><a href="/bookinfo"><img src="${empty book.image_url ? 'https://placehold.co/120x160/E0E0E0/fff' : book.image_url}" alt="Book Cover"></a></div>
+			            <div class="book-cover"><a href="/bookinfo?bookNo=${book.book_no}"><img src="${empty book.image_url ? 'https://placehold.co/120x160/E0E0E0/fff' : book.image_url}" alt="Book Cover"></a></div>
 			            <div class="book-info">
-			                <h3><a href="/bookinfo">${book.title_nm}</a></h3>
+			                <h3><a href="/bookinfo?bookNo=${book.book_no}">${book.title_nm}</a></h3>
 			                <p>저자 : ${book.authr_nm}</p>
 			                <p>출판사 : ${book.publisher_nm}</p>
 			            </div>

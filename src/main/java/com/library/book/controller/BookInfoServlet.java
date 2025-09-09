@@ -1,11 +1,15 @@
 package com.library.book.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import com.library.book.service.BookService;
+import com.library.book.vo.Book;
 
 /**
  * Servlet implementation class bookInfoServlet
@@ -26,8 +30,22 @@ public class BookInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String bookNoParam = request.getParameter("bookNo");
+        int bookNo = 0;
+        if(bookNoParam != null && !bookNoParam.isEmpty()) {
+            try {
+                bookNo = Integer.parseInt(bookNoParam);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        BookService bookService = new BookService();
+        Book book = bookService.getBookByNo(bookNo);
+
+        request.setAttribute("book", book);
+        RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookInfo.jsp");
+        view.forward(request, response);
 	}
 
 	/**
