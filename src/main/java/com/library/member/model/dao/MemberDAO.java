@@ -57,4 +57,5 @@ public class MemberDAO implements InterfaceMemberDAO{
 		return result;
 	}
 
+
 }

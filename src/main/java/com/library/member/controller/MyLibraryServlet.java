@@ -6,7 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import com.library.member.model.vo.Member;
 
 /**
  * Servlet implementation class myLibraryServlet
@@ -27,8 +31,17 @@ public class MyLibraryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/member/myLibrary.jsp")
-		.forward(request, response);
+		HttpSession session = request.getSession();
+        String memberId = (String) session.getAttribute("memberId");
+
+        response.setContentType("text/plain;charset=UTF-8");
+
+        if (memberId == null) {
+            response.sendRedirect("/login");
+        }else {
+        	request.getRequestDispatcher("/WEB-INF/views/member/myLibrary.jsp")
+        	.forward(request, response);
+        }
 	}
 
 	/**

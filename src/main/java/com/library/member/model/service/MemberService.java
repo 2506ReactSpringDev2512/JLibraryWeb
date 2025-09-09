@@ -40,6 +40,4 @@ public class MemberService implements InterfaceMemberService{
 		return result;
 	}
 
-
-
 }
