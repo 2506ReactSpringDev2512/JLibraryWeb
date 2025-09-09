@@ -30,18 +30,19 @@ public class BookInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bookNoParam = request.getParameter("bookNo");
-        int bookNo = 0;
-        if(bookNoParam != null && !bookNoParam.isEmpty()) {
-            try {
-                bookNo = Integer.parseInt(bookNoParam);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+		String bookNoStr = request.getParameter("bookNo");
+        if (bookNoStr == null || bookNoStr.isEmpty()) {
+            response.sendRedirect("/search");
+            return;
         }
-
         BookService bookService = new BookService();
+        int bookNo = Integer.parseInt(bookNoStr);
         Book book = bookService.getBookByNo(bookNo);
+
+        if (book == null) {
+            response.sendRedirect("/search");
+            return;
+        }
 
         request.setAttribute("book", book);
         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookInfo.jsp");

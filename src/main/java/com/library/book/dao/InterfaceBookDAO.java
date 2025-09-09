@@ -10,4 +10,5 @@ public interface InterfaceBookDAO {
 	public List<Book> searchBooks(String searchType, String keyword, int offset, int limit, String sortBy,
 			String order, Connection conn) throws SQLException;
 	public int getTotalItems(String searchType, String keyword, Connection conn) throws SQLException;
+	public Book getBookById(int bookNo, Connection conn) throws SQLException;
 }

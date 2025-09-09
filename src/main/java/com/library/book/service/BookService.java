@@ -70,10 +70,21 @@ public class BookService implements InterfaceBookService {
 
         return totalItems;
 	}
-
+	
 	public Book getBookByNo(int bookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+	    Book book = null;
+
+	    try {
+	        conn = jdbcTemplate.getConnection();
+	        book = bDao.getBookById(bookNo, conn);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (conn != null) try { conn.close(); } catch(SQLException e) {}
+	    }
+
+	    return book;
 	}
 
 }

@@ -9,4 +9,5 @@ public interface InterfaceBookService {
 	public int getTotalPages(String searchType, String keyword);
 	public int[] getPageRange(int currentPage, int totalPages);
 	public int getTotalItems(String searchType, String keyword);
+	public Book getBookByNo(int bookNo);
 }

@@ -79,6 +79,47 @@ public class BookDAO implements InterfaceBookDAO{
 		conn.close();
 		return totalItems;
 	}
+
+	public Book getBookById(int bookNo, Connection conn) throws SQLException {
+	    Book book = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+
+	    String query = "SELECT * FROM BOOK_TBL WHERE book_no = ?";
+	    try {
+	        pstmt = conn.prepareStatement(query);
+	        pstmt.setInt(1, bookNo);
+	        rset = pstmt.executeQuery();
+
+	        if (rset.next()) {
+	            book = new Book();
+	            book.setBook_no(rset.getInt("book_no"));
+	            book.setIsbn_thirteen_no(rset.getString("isbn_thirteen_no"));
+	            book.setVlm_nm(rset.getString("vlm_nm"));
+	            book.setTitle_nm(rset.getString("title_nm"));
+	            book.setAuthr_nm(rset.getString("authr_nm"));
+	            book.setPublisher_nm(rset.getString("publisher_nm"));
+	            book.setPblicte_de(rset.getString("pblicte_de"));
+	            book.setAdtion_smbl_nm(rset.getString("adtion_smbl_nm"));
+	            book.setPrc_value(rset.getString("prc_value"));
+	            book.setImage_url(rset.getString("image_url"));
+	            book.setBook_intrcn_cn(rset.getString("book_intrcn_cn"));
+	            book.setKdc_nm(rset.getString("kdc_nm"));
+	            book.setTitle_sbst_nm(rset.getString("title_sbst_nm"));
+	            book.setAuthr_sbst_nm(rset.getString("authr_sbst_nm"));
+	            book.setTwo_pblicte_de(rset.getString("two_pblicte_de"));
+	            book.setIntnt_bookst_book_exst_at(rset.getString("intnt_bookst_book_exst_at"));
+	            book.setPortal_site_book_exst_at(rset.getString("portal_site_book_exst_at"));
+	            book.setIsbn_no(rset.getString("isbn_no"));
+	            book.setLend_yn(rset.getString("lend_yn"));
+	        }
+	    } finally {
+	        if (rset != null) rset.close();
+	        if (pstmt != null) pstmt.close();
+	    }
+
+	    return book;
+	}
 	
 	
 }

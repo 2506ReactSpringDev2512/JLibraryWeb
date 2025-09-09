@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="info-label">ISBN </span><span class="info-text"> ${book.isbn_no}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">가격 </span><span class="info-text"> ${book.price}원</span>
+                <span class="info-label">가격 </span><span class="info-text"> ${book.prc_value}원</span>
             </div>
             <div id="status">
-                대출 가능
+                ${book.lend_yn == '대여가능' ? '대출 가능' : '대출 중'}
             </div>
         </div>
     </div>
