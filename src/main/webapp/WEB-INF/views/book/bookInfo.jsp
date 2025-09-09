@@ -55,8 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 버튼 섹션 -->
     <div id="buttonSection">
-        <button class="action-button-list gray-button"><a href="/search">목록</a></button>
-        <button class="action-button-lend black-button"><a href="">대출하기</a></button>
+        <button class="action-button-list gray-button"><a href="${pageContext.request.contextPath}/search">목록</a></button>
+        <button class="action-button-lend black-button">
+        <a href="${pageContext.request.contextPath}/lendinfo" 
+           onclick="return confirm('이 도서를 대출하시겠습니까?') && (alert('도서가 성공적으로 대출되었습니다!'), true);">대출하기</a>
+    </button>
     </div>
 	
 	

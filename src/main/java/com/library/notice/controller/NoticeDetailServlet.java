@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class NoticeDetail
+ * Servlet implementation class NoticeDetailServlet
  */
 @WebServlet("/notice/detail")
 public class NoticeDetailServlet extends HttpServlet {
