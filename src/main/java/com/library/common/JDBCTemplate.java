@@ -33,4 +33,26 @@ public class JDBCTemplate {
 		}
 		return conn;
 	}
+	
+    // 커넥션 반환
+    public static void commit(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 롤백 처리
+    public static void rollback(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.rollback();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

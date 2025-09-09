@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="stylesheet" href="../resources/css/bookInfo.css">
     <link rel="stylesheet" href="../resources/css/container.css">
     
@@ -55,12 +56,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 버튼 섹션 -->
     <div id="buttonSection">
-        <button class="action-button-list gray-button"><a href="${pageContext.request.contextPath}/search">목록</a></button>
-        <button class="action-button-lend black-button">
-        <a href="${pageContext.request.contextPath}/lendinfo" 
-           onclick="return confirm('이 도서를 대출하시겠습니까?') && (alert('도서가 성공적으로 대출되었습니다!'), true);">대출하기</a>
-    </button>
-    </div>
+    <a href="/search">
+        <button class="action-button-list gray-button">목록</button>
+    </a>
+
+    <!-- 대출하기 버튼을 form 태그로 감싸서 POST 요청을 보냄 -->
+    <a><button id="lendBtn" class="action-button-lend black-button">대출하기</button></a>
+	</div>
+
+	<script>
+	const lendBtn = document.getElementById("lendBtn");
+	
+	lendBtn.addEventListener("click", function() {
+	    if (!confirm("이 도서를 대출하시겠습니까?")) return;
+	
+	    const bookNo = "${book.book_no}"; // 현재 책 번호
+	
+	    fetch("${pageContext.request.contextPath}/lend", {
+	        method: "POST",
+	        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	        body: "bookNo=" + bookNo
+	    })
+	    .then(response => response.text())
+	    .then(result => {
+	        alert(result); // 서버에서 보내는 메시지 표시
+	        // 필요시, 버튼 상태를 바꿔서 다시 클릭 못하게 처리 가능
+	        if (result === "대출 성공!") {
+	            lendBtn.disabled = true;
+	            lendBtn.textContent = "대출 완료";
+	        }
+	    })
+	    .catch(err => alert("대출 중 오류가 발생했습니다."));
+	});
+	</script>
 	
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
