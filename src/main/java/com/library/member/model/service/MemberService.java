@@ -40,4 +40,22 @@ public class MemberService implements InterfaceMemberService{
 		return result;
 	}
 
+	public int modifyMember(Member member) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.modifyMember(member, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int modifyMember(String memberId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 }

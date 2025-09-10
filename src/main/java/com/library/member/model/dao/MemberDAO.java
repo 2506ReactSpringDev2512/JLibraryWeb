@@ -57,5 +57,18 @@ public class MemberDAO implements InterfaceMemberDAO{
 		return result;
 	}
 
+	public int modifyMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PWD=?, PHONE=?";
+		pstmt = conn.prepareStatement(query);
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+
+	
+
 
 }

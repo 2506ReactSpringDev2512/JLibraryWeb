@@ -38,8 +38,16 @@ public class ModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberPw = request.getParameter("");
-		String memberPhone = request.getParameter("");
+		String memberId = (String) request.getSession().getAttribute("memberId");
+		MemberService mService = new MemberService();
+		int result = mService.modifyMember(memberId);
+		if(result > 0) {
+			response.sendRedirect("/");
+		}else {
+			request.setAttribute("errorMsg", "회원 정보가 수정되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
 }

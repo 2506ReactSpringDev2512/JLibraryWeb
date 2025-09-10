@@ -17,19 +17,19 @@
                 <form action="/modify" method="" onsubmit="return validatePassword()">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" value="${member.memberId }" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly required>
+                        <input type="text" value="${member.memberId} " readonly minlength="6" maxlength="15" pattern="[A-Za-z0-9]+">
                     </div>
 
 
                     <div class="form-row">
                         <label>이름</label>
-                        <input type="text" value="${member.memberName }" pattern="[가-힣]{2,5}" required readonly>
+                        <input type="text" value="${member.memberName} " readonly pattern="[가-힣]{2,5}">
                     </div>
 
 
                     <div class="form-row">
                         <label>현재 비밀번호</label>
-                        <input type="password" value= "${member.memberPwd }" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" required readonly> </div>
+                        <input type="password" value= "${member.memberPwd} " readonly minlength="6" maxlength="15" pattern="[A-Za-z0-9]+"> </div>
 
 
                     <div class="form-row">
