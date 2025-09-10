@@ -73,13 +73,4 @@ public class MemberService implements InterfaceMemberService{
 		return result;
 	}
 
-	public int modifyMember(String memberId) {
-		int result = 0;
-		Connection conn = jdbcTemplate.getConnection();
-		result = mDao.modifyMember(member, conn);
-		return 0;
-	}
-
-
-
 }

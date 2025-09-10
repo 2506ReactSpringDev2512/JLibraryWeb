@@ -17,19 +17,22 @@
                 <form action="/modify" method="" onsubmit="return validatePassword()">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" value="${member.memberId} " readonly minlength="6" maxlength="15" pattern="[A-Za-z0-9]+">
+                        <!-- 아이디 (읽기 전용) -->
+						<input type="text" value="${member.memberId}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>이름</label>
-                        <input type="text" value="${member.memberName} " readonly pattern="[가-힣]{2,5}">
+                        <!-- 이름 (읽기 전용) -->
+						<input type="text" value="${member.memberName}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>현재 비밀번호</label>
-                        <input type="password" value= "${member.memberPwd} " readonly minlength="6" maxlength="15" pattern="[A-Za-z0-9]+"> </div>
+                        <input type="password" value= "${member.memberPwd} " readonly>
+                    </div>
 
 
                     <div class="form-row">
@@ -47,7 +50,7 @@
                     <div class="form-row">
                         <label>휴대폰 번호</label>
                         <div class="phone-input-wrapper">
-                            <input type="text" placeholder="010-1111-2222" attern="010-[0-9]{4}-[0-9]{4}" required>
+                            <input type="text" name="phone" placeholder="010-1111-2222" pattern="010-[0-9]{4}-[0-9]{4}" required>
                         </div>
                     </div>
 
