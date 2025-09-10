@@ -21,7 +21,7 @@
                 <div class="book-item">
                     <div class="book-cover">
                         <a href="/bookinfo?bookNo=${book.book_no}">
-                            <img src="https://placehold.co/100x140/E0E0E0/fff" alt="Book Cover">
+                            <img src="https://placehold.co/120x160/E0E0E0/fff" alt="Book Cover">
                         </a>
                     </div>
                     <div class="book-info">
@@ -33,7 +33,7 @@
                         <p>반납 예정일 : <c:out value="${book.return_date}"/></p>
                        	<div class="button-group">
                         <button class="action-button extend-btn" data-bookno="${book.book_no}">연장하기</button>
-						<a href="/returnBook"><button class="action-button">반납하기</button></a>
+						<button class="action-button return-btn" data-bookno="${book.book_no}">반납하기</button>
 						</div>
                     </div>
                     <!-- 연체 여부 표시 -->
@@ -106,6 +106,25 @@ $(document).ready(function() {
             },
             error: function() {
                 alert("연장 실패! 다시 시도해주세요.");
+            }
+        });
+    });
+    
+    $(".return-btn").click(function() {
+        let btn = $(this);
+        let bookNo = btn.data("bookno");
+
+        $.ajax({
+            url: "/returnBook",
+            type: "POST",
+            data: { bookNo: bookNo },
+            success: function(response) {
+                // 반납되면 화면에서 책 제거
+                btn.closest(".book-item").remove();
+                alert("반납이 완료되었습니다!");
+            },
+            error: function() {
+                alert("반납 실패! 다시 시도해주세요.");
             }
         });
     });

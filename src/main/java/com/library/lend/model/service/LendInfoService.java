@@ -83,5 +83,25 @@ public class LendInfoService implements InterfaceLendInfoService{
         return result;
 	}
 
+	public boolean returnBook(int bookNo) {
+		try (Connection conn = jdbcTemplate.getConnection()) {
+            // 1. 대출 정보 삭제
+            boolean deleteResult = lendDao.deleteLend(conn, bookNo);
+            // 2. 책 상태 업데이트
+            boolean updateResult = lendDao.updateBookLendStatus(conn, bookNo, "대여가능");
+
+            if(deleteResult && updateResult) {
+                JDBCTemplate.commit(conn);
+                return true;
+            } else {
+                JDBCTemplate.rollback(conn);
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+	}
+
 
 }

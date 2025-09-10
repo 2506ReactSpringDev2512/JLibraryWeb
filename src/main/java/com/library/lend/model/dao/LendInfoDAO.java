@@ -111,4 +111,29 @@ public class LendInfoDAO implements InterfaceLendInfoDAO{
         return result;
 	}
 
+	public boolean deleteLend(Connection conn, int bookNo) {
+		String sql = "DELETE FROM LENDINFO_TBL WHERE BOOK_NO = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, bookNo);
+            int result = pstmt.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+	}
+
+	public boolean updateBookLendStatus(Connection conn, int bookNo, String status) {
+		String sql = "UPDATE BOOK_TBL SET LEND_YN = ? WHERE BOOK_NO = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, bookNo);
+            int result = pstmt.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+	}
+
 }
