@@ -58,7 +58,7 @@ public class NoticeDetailServlet extends HttpServlet {
 
 		// 4. request에 notice 객체 저장 후 포워딩
 		request.setAttribute("notice", notice);
-		request.setAttribute("preNotice", preNotice);
+		request.setAttribute("prevNotice", preNotice);
 		request.setAttribute("nextNotice", nextNotice);
 		request.getRequestDispatcher("/WEB-INF/views/notice/noticeDetail.jsp")
 		.forward(request, response);
