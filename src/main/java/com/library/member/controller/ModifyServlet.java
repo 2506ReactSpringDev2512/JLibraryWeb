@@ -29,18 +29,9 @@ public class ModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberPw = request.getParameter("memberPw");
-		MemberService mSerivce = new MemberService();
-		Member member = mSerivce.selectOneByPw(memberPw);
-		if( != memberPw) { //< if문을 작성할 때 기존 로그인 되어있는 계정의 비번과 일치하는 비번을 작성할 시 동작
-			request.setAttribute("member", member);
-		}else {
-			request.setAttribute("errorMsg", "비밀번호가 다릅니다. 다시 확인해주세요.");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
-			.forward(request, response);
-		}
-		request.getRequestDispatcher("/")
+		request.getRequestDispatcher("/WEB-INF/views/member/modify.jsp")
 		.forward(request, response);
+		
 	}
 
 	/**
