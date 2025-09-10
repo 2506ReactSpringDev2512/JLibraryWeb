@@ -23,7 +23,7 @@
 
 
                 <div class="alink">
-                    <a href="#">비밀번호 찾기</a>
+                    <a href="findPwd">비밀번호 찾기</a>
                     <a href="/register">회원가입</a>
                 </div>
 

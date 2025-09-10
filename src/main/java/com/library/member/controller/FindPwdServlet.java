@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.library.member.model.service.MemberService;
+
 /**
  * Servlet implementation class findPwdServlet
  */
@@ -34,8 +36,20 @@ public class FindPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String memberId = request.getParameter("memberId");
+        String memberName = request.getParameter("memberName");
+        String memberPhone = request.getParameter("memberPhone");
+        
+        MemberService mService = new MemberService();
+        String password = mService.findPassword(memberId, memberName, memberPhone);
+        System.out.println(password);
+
+        response.setContentType("text/html; charset=UTF-8");
+        if (password == null) {
+            response.getWriter().print("<script>alert('사용자 정보가 없습니다.'); history.back();</script>");
+        } else {
+            response.getWriter().print("<script>alert('비밀번호: " + password + "'); history.back();</script>");
+        }
 	}
 
 }

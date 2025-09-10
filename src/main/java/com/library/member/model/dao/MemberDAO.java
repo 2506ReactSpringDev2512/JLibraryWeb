@@ -149,6 +149,29 @@ public class MemberDAO implements InterfaceMemberDAO{
 		return result;
 	}
 
+	public String selectPassword(Connection conn, String memberId, String memberName, String memberPhone) throws SQLException {
+		String pwd = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT MEMBER_PW FROM MEMBER_TBL WHERE MEMBER_ID=? AND MEMBER_NAME=? AND MEMBER_PHONE=?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberId);
+            pstmt.setString(2, memberName);
+            pstmt.setString(3, memberPhone);
+
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                pwd = rs.getString("MEMBER_PW");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        pstmt.close();
+        conn.close();
+        return pwd;
+	}
+
 	
 
 

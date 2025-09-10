@@ -78,6 +78,18 @@ public class MemberService implements InterfaceMemberService{
 		return 0;
 	}
 
+	public String findPassword(String memberId, String memberName, String memberPhone) {
+		Connection conn = null;
+        String password = null;
+        try {
+            conn = jdbcTemplate.getConnection();
+            password = mDao.selectPassword(conn, memberId, memberName, memberPhone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return password;
+	}
+
 
 
 }
