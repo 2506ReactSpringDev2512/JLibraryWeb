@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.library.notice.model.vo.Notice;
@@ -75,8 +76,17 @@ public class NoticeDAO implements InterfaceNoticeDAO{
             n.setNoticeContent(rset.getString("notice_content"));
             n.setNoticeWriter(rset.getString("notice_writer"));
 
-            // Date → String 변환
-            n.setNoticeDate(sdf.format(rset.getDate("notice_date")));
+            // ✅ null 체크 추가
+            Date date = rset.getDate("notice_date");
+            if (date != null) {
+                n.setNoticeDate(sdf.format(date));
+            } else {
+                n.setNoticeDate("날짜 없음"); // 또는 "", null 등
+            }
+            
+            
+//            // Date → String 변환
+//            n.setNoticeDate(sdf.format(rset.getDate("notice_date")));
 
             n.setViewCount(rset.getInt("view_count"));
             list.add(n);
@@ -105,6 +115,42 @@ public class NoticeDAO implements InterfaceNoticeDAO{
 		pstmt.close();
 		
 		return result;
+	}
+
+	public Notice selectNoticeByNo(int noticeNo, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, noticeNo);
+		
+		rset = pstmt.executeQuery();
+		
+		Notice notice = null;
+		if(rset.next()) {
+			notice = new Notice();
+			notice.setNoticeNo(rset.getInt("notice_no"));
+			notice.setNoticeSubject(rset.getString("notice_subject"));
+			notice.setNoticeWriter(rset.getString("notice_writer"));
+			// ✅ 날짜 포맷 지정 (yyyy-MM-dd)
+		    java.sql.Date date = rset.getDate("notice_date");
+		    if (date != null) {
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		        notice.setNoticeDate(sdf.format(date));
+		    } else {
+		        notice.setNoticeDate("날짜 없음");
+		    }
+//			notice.setNoticeDate(rset.getString("notice_date"));
+			notice.setNoticeContent(rset.getString("notice_content"));
+			notice.setViewCount(rset.getInt("view_count"));
+		}
+		
+		rset.close();
+		pstmt.close();
+		
+		return notice;
 	}
 
 }

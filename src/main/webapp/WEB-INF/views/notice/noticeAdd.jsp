@@ -21,7 +21,7 @@
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="noticeWriter" value="관리자"></td>
+                            <td><input type="text" name="noticeWriter" value="${noticeWriter}" readonly></td>
                         </tr>
                         <tr>
                             <th>작성일</th>

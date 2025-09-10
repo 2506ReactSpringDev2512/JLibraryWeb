@@ -2,6 +2,7 @@ package com.library.notice.controller;
 
 import java.io.IOException;
 
+import com.library.member.model.vo.Member;
 import com.library.notice.model.service.NoticeService;
 import com.library.notice.model.vo.Notice;
 
@@ -10,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ManageAddNoticeServlet
@@ -32,6 +34,13 @@ public class ManageAddNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+		    Member loginUser = (Member) session.getAttribute("loginUser");
+		    if(loginUser != null) {
+		        request.setAttribute("noticeWriter", loginUser.getMemberId());
+		    }
+		}
 		request.getRequestDispatcher("/WEB-INF/views/notice/noticeAdd.jsp")
 		.forward(request, response);
 	}
@@ -66,14 +75,30 @@ public class ManageAddNoticeServlet extends HttpServlet {
 			noticeDate = java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		}
 		
+		// 세션에서 로그인 사용자 꺼내기 (작성자 이름)
+		HttpSession session = request.getSession(false);
+		noticeWriter = null; // 초기값 null로 설정
+
+		if (session != null) {
+		    Member loginUser = (Member) session.getAttribute("loginUser");
+		    if (loginUser != null) {
+		        noticeWriter = loginUser.getMemberId();
+		    }
+		}
+
+		// 로그인 정보 없으면 기본값 "관리자" 설정
+		if (noticeWriter == null || noticeWriter.trim().isEmpty()) {
+		    noticeWriter = "관리자";
+		}
 		
-		noticeWriter = "관리자";
+		
 		
 		// Notice 객체 생성
 		Notice notice = new Notice();
 		notice.setNoticeSubject(noticeSubject.trim());
 		notice.setNoticeContent(noticeContent.trim());
 		notice.setNoticeWriter(noticeWriter.trim());
+		notice.setNoticeDate(noticeDate);
 		 
 		// 공지사항 등록
 		int result = noticeService.insertNotice(notice);

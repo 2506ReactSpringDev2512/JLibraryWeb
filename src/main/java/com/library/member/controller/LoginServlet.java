@@ -48,6 +48,8 @@ public class LoginServlet extends HttpServlet {
 		member = mService.checkLogin(member);
 		if(member != null) {
 			HttpSession session = request.getSession();
+			
+			session.setAttribute("loginUser", member);
 
 			session.setAttribute("memberId", member.getMemberId());
 			session.setAttribute("memberName", member.getMemberName());
