@@ -76,7 +76,7 @@
 			            </c:if>
 			            <c:if test="${sessionScope.memberId eq 'admin123' }">
 			           	<div class="button-group">
-                            <a href="/add-book"><button class="action-btn modify-btn">수정</button></a>
+                            <a href="/modify-book"><button class="action-btn modify-btn">수정</button></a>
                             <button class="action-btn delete-btn" data-bookno="${book.book_no}">삭제</button>
                         </div>
                         </c:if>

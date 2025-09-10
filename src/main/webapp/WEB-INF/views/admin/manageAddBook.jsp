@@ -12,44 +12,45 @@
     </div>
    
     <div id="tbody">
+    <form action="<%=request.getContextPath()%>/add-book" method="post">
         <div class="form-row">
             <label>책이름</label>
-            <input type="text">
+            <input type="text" name="titleName">
         </div>
    
    
         <div class="form-row">
             <label>저자</label>
-            <input type="text">
+            <input type="text" name="authrName">
         </div>
    
    
         <div class="form-row">
             <label>출판사 명</label>
-            <input type="text">
+            <input type="text" name="publisherName">
         </div>
    
    
         <div class="form-row">
             <label>책 가격</label>
-            <input type="number">
+            <input type="number" name="prcValue">
         </div>
    
    
         <div class="form-row">
             <label>일련번호</label>
-            <input type="number">
+            <input type="number" name="bookNo">
         </div>
    
    
         <div class="form-row infocontent">
             <label>소개 내용</label>
-            <textarea name="show"></textarea>
+            <textarea name="show" name="bookIntcn"></textarea>
         </div>
    
         <input type="submit" value="추가하기">
 
-
+	</form>
     </div>
 
 

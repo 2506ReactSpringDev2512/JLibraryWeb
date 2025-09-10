@@ -110,5 +110,23 @@ public class BookService implements InterfaceBookService {
         return result;
 	}
 
+	public void addBook(Book book) throws SQLException {
+		Connection conn = null;
+	    try {
+	        conn = jdbcTemplate.getConnection();
+	        conn.setAutoCommit(false);
+
+	        int result = bDao.insertBook(conn, book);
+
+	        if(result > 0) conn.commit();
+	        else conn.rollback();
+	    } catch(SQLException e) {
+	        if(conn != null) conn.rollback(); // 예외 발생 시 롤백
+	        throw e; // 호출한 쪽으로 예외 던지기
+	    } finally {
+	        if(conn != null) conn.close(); // 리소스 반환
+	    }
+	}
+
 
 }

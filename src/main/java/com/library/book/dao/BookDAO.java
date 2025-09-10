@@ -135,6 +135,21 @@ public class BookDAO implements InterfaceBookDAO{
         return result;
     }
 
+	public int insertBook(Connection conn, Book book) throws SQLException {
+		String sql = "INSERT INTO BOOK_TBL (BOOK_NO, TITLE_NM, AUTHR_NM, PUBLISHER_NM, PRC_VALUE, BOOK_INTRCN_CN, LEND_YN) "
+	               + "VALUES (?, ?, ?, ?, ?, ?, '대여가능')";
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, book.getBook_no());
+	        pstmt.setString(2, book.getTitle_nm());
+	        pstmt.setString(3, book.getAuthr_nm());
+	        pstmt.setString(4, book.getPublisher_nm());
+	        pstmt.setString(5, book.getPrc_value());
+	        pstmt.setString(6, book.getBook_intrcn_cn());
+
+	        return pstmt.executeUpdate();
+	    }
+	}
+
 	
 	
 }
