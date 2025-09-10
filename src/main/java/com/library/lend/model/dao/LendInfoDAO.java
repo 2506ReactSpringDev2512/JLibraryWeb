@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.library.common.JDBCTemplate;
 import com.library.lend.model.vo.LendInfo;
 
 public class LendInfoDAO implements InterfaceLendInfoDAO{
@@ -85,6 +86,29 @@ public class LendInfoDAO implements InterfaceLendInfoDAO{
             }
         }
         return 0;
+	}
+
+
+	public int updateReturnDate(Connection conn, String memberId, int bookNo) throws SQLException {
+		PreparedStatement pstmt = null;
+        int result = 0;
+
+        String sql = "UPDATE LENDINFO_TBL " +
+                     "SET RETURN_DATE = SYSDATE + 7 " +
+                     "WHERE MEMBER_ID = ? AND BOOK_NO = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberId);
+            pstmt.setInt(2, bookNo);
+            result = pstmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } 
+        pstmt.close();
+        conn.close();
+
+        return result;
 	}
 
 }

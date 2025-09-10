@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../resources/css/lendInfo.css">
     <link rel="stylesheet" href="../resources/css/container.css">
+
     
     
 <div id="container">
@@ -30,7 +32,7 @@
                         <p>출판사 : ${book.publisher}</p>
                         <p>반납 예정일 : <c:out value="${book.return_date}"/></p>
                        	<div class="button-group">
-                        <a href="/extendBook"><button class="action-button">연장하기</button></a>
+                        <button class="action-button extend-btn" data-bookno="${book.book_no}">연장하기</button>
 						<a href="/returnBook"><button class="action-button">반납하기</button></a>
 						</div>
                     </div>
@@ -76,3 +78,36 @@
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </div>
+
+<script>
+$(document).ready(function() {
+    $(".extend-btn").click(function() {
+        let btn = $(this);
+        let bookNo = btn.data("bookno");
+        
+        $.ajax({
+            url: "/extendBook",
+            type: "POST",
+            data: { bookNo: bookNo },
+            success: function(response) {
+                // 연장 성공하면 화면의 반납 예정일 업데이트
+                let returnDateElem = btn.closest(".book-item").find("p:contains('반납 예정일')");
+                
+                // 오늘 기준 7일 후로 표시
+                let newDate = new Date();
+                newDate.setDate(newDate.getDate() + 7);
+                let yyyy = newDate.getFullYear();
+                let mm = ("0" + (newDate.getMonth() + 1)).slice(-2);
+                let dd = ("0" + newDate.getDate()).slice(-2);
+                
+                returnDateElem.text("반납 예정일 : " + yyyy + "-" + mm + "-" + dd);
+                
+                alert("연장이 완료되었습니다!");
+            },
+            error: function() {
+                alert("연장 실패! 다시 시도해주세요.");
+            }
+        });
+    });
+});
+</script>

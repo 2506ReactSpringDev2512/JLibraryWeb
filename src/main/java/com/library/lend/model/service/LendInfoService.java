@@ -60,4 +60,28 @@ public class LendInfoService implements InterfaceLendInfoService{
         return total;
 	}
 
+	public boolean extendBook(String memberId, int bookNo) {
+		Connection conn = null;
+        boolean result = false;
+
+        try {
+            conn = jdbcTemplate.getConnection(); // Service에서 Connection
+            int updated = lendDao.updateReturnDate(conn, memberId, bookNo);
+
+            if(updated > 0) {
+            	JDBCTemplate.commit(conn);
+                result = true;
+            } else {
+            	JDBCTemplate.rollback(conn);
+            }
+        } catch(Exception e) {
+        	JDBCTemplate.rollback(conn);
+            e.printStackTrace();
+        }
+        
+
+        return result;
+	}
+
+
 }
