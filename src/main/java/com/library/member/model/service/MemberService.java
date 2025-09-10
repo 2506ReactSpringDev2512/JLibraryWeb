@@ -74,7 +74,9 @@ public class MemberService implements InterfaceMemberService{
 	}
 
 	public int modifyMember(String memberId) {
-		// TODO Auto-generated method stub
+		int result = 0;
+		Connection conn = jdbcTemplate.getConnection();
+		result = mDao.modifyMember(member, conn);
 		return 0;
 	}
 
