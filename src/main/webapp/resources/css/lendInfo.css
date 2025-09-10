@@ -165,3 +165,16 @@
             text-decoration: none;
             color: black;
         }
+        
+        .action-button {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .button-group {
+        	margin-left: 700px;
+        }

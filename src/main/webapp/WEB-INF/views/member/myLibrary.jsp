@@ -10,8 +10,8 @@
         <div id="subtitle">나의 도서관</div>
         <p>메인</p> <p>></p> <p>나의 도서관</p>
         <div class="box">
-        <button class="but1"><a href="${pageContext.request.contextPath}/lendinfo">대출현황/연장</button>
-        <button class="but2"><a href="${pageContext.request.contextPath}/modify">개인 정보 수정</button>
+        <a href="${pageContext.request.contextPath}/lendinfo"><button class="but1">대출현황/연장</button></a>
+        <a href="${pageContext.request.contextPath}/modify"><button class="but2">개인 정보 수정</button></a>
     </div>
     </div>
 	

@@ -2,7 +2,12 @@ package com.library.lend.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.library.lend.model.vo.LendInfo;
 
 public class LendInfoDAO implements InterfaceLendInfoDAO{
 
@@ -11,7 +16,7 @@ public class LendInfoDAO implements InterfaceLendInfoDAO{
         int result = 0;
 
         // 1. 대출 상태를 'Y'로 업데이트
-        String updateQuery = "UPDATE BOOK_TBL SET LEND_YN = '대여불가' WHERE book_no = ?";
+        String updateQuery = "UPDATE BOOK_TBL SET LEND_YN = '대여불가' WHERE BOOK_NO = ?";
         pstmt = conn.prepareStatement(updateQuery);
         pstmt.setInt(1, bookNo);
         result = pstmt.executeUpdate();
@@ -26,6 +31,60 @@ public class LendInfoDAO implements InterfaceLendInfoDAO{
         }
 
         return result > 0;
+	}
+
+	public List<LendInfo> selectLendInfoList(String memberId, int currentPage, int pageSize, Connection conn) throws SQLException {
+		List<LendInfo> list = new ArrayList<>();
+        int startRow = (currentPage - 1) * pageSize + 1;
+        int endRow = currentPage * pageSize;
+
+        String sql = "SELECT * FROM (" +
+                "  SELECT ROWNUM AS rnum, a.* FROM (" +
+                "    SELECT l.*, " +
+                "           b.TITLE_NM AS title_nm, " +
+                "           b.AUTHR_NM AS author, " +
+                "           b.PUBLISHER_NM AS publisher " +
+                "    FROM LENDINFO_TBL l " +
+                "    JOIN BOOK_TBL b ON l.BOOK_NO = b.BOOK_NO " +
+                "    WHERE l.MEMBER_ID = ? " +
+                "    ORDER BY l.LEND_DATE DESC" +
+                "  ) a" +
+                ") WHERE rnum BETWEEN ? AND ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, memberId);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, endRow);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                	LendInfo info = new LendInfo();
+                    info.setMemberId(rs.getString("MEMBER_ID"));
+                    info.setBook_no(rs.getInt("BOOK_NO"));
+                    info.setLend_date(rs.getDate("LEND_DATE"));
+                    info.setReturn_date(rs.getDate("RETURN_DATE"));
+                    info.setTitle_nm(rs.getString("title_nm"));
+                    info.setAuthor(rs.getString("author"));
+                    info.setPublisher(rs.getString("publisher"));
+                    list.add(info);
+                }
+            }
+        }
+
+        return list;
+	}
+
+	public int getLendInfoCount(String memberId, Connection conn) throws SQLException {
+		String sql = "SELECT COUNT(*) AS total FROM LENDINFO_TBL WHERE MEMBER_ID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, memberId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("total");
+                }
+            }
+        }
+        return 0;
 	}
 
 }

@@ -2,9 +2,11 @@ package com.library.lend.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.library.common.JDBCTemplate;
 import com.library.lend.model.dao.LendInfoDAO;
+import com.library.lend.model.vo.LendInfo;
 
 public class LendInfoService implements InterfaceLendInfoService{
 
@@ -36,6 +38,26 @@ public class LendInfoService implements InterfaceLendInfoService{
         }
 
         return isSuccess;
+	}
+
+	public List<LendInfo> getLendInfoList(String memberId, int currentPage, int pageSize) {
+		List<LendInfo> list = null;
+        try (Connection conn = jdbcTemplate.getConnection()) {
+            list = lendDao.selectLendInfoList(memberId, currentPage, pageSize, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+	}
+
+	public int getLendInfoTotalCount(String memberId) {
+		int total = 0;
+        try (Connection conn = jdbcTemplate.getConnection()) {
+            total = lendDao.getLendInfoCount(memberId, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
 	}
 
 }

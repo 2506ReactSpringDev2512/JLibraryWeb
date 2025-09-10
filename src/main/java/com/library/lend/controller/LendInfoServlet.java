@@ -6,6 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.library.lend.model.service.LendInfoService;
+import com.library.lend.model.vo.LendInfo;
 
 /**
  * Servlet implementation class rendInfoServlet
@@ -26,8 +30,26 @@ public class LendInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/lend/lendInfo.jsp")
-		.forward(request, response);
+		String memberId = (String) request.getSession().getAttribute("memberId");
+
+        int currentPage = 1;
+        int pageSize = 10;
+
+        if(request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        LendInfoService lendService = new LendInfoService();
+        // 대출 정보 가져오기
+        List<LendInfo> lendList = lendService.getLendInfoList(memberId, currentPage, pageSize);
+        int totalCount = lendService.getLendInfoTotalCount(memberId);
+        int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+
+        request.setAttribute("lendList", lendList);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("totalPage", totalPage);
+
+        request.getRequestDispatcher("/WEB-INF/views/lend/lendInfo.jsp").forward(request, response);
 	}
 
 	/**
