@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.library.member.model.vo.Member;
 
@@ -57,5 +59,84 @@ public class MemberDAO implements InterfaceMemberDAO{
 		return result;
 	}
 
+	public List<Member> selectMemberList(String searchType, String searchKeyword, int currentPage, int pageSize,
+			Connection conn) throws SQLException {
+		List<Member> list = new ArrayList<>();
+	    
+	    int startRow = (currentPage - 1) * pageSize + 1;
+	    int endRow = currentPage * pageSize;
+
+	    StringBuilder sql = new StringBuilder();
+	    sql.append("SELECT * FROM ( ")
+	       .append("  SELECT ROWNUM AS rnum, m.*, ")
+	       .append("         (SELECT COUNT(*) FROM LENDINFO_TBL l WHERE l.MEMBER_ID = m.MEMBER_ID) AS lend_count, ")
+	       .append("         (SELECT COUNT(*) FROM LENDINFO_TBL l WHERE l.MEMBER_ID = m.MEMBER_ID AND l.RETURN_DATE < SYSDATE) AS overdue_count ")
+	       .append("  FROM MEMBER_TBL m ");
+
+	    if(searchKeyword != null && !searchKeyword.isEmpty()) {
+	        if("id".equals(searchType)) {
+	            sql.append("WHERE m.MEMBER_ID LIKE ? ");
+	        } else if("name".equals(searchType)) {
+	            sql.append("WHERE m.MEMBER_NAME LIKE ? ");
+	        }
+	    }
+
+	    sql.append("  ORDER BY m.MEMBER_ID ")
+	       .append(") ")
+	       .append("WHERE rnum BETWEEN ? AND ?");
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+	        int idx = 1;
+	        if(searchKeyword != null && !searchKeyword.isEmpty()) {
+	            pstmt.setString(idx++, "%" + searchKeyword + "%");
+	        }
+	        pstmt.setInt(idx++, startRow);
+	        pstmt.setInt(idx++, endRow);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while(rs.next()) {
+	                Member m = new Member();
+	                m.setMemberId(rs.getString("member_id"));
+	                m.setMemberName(rs.getString("member_name"));
+	                m.setPhone(rs.getString("member_phone"));
+	                m.setGender(rs.getString("member_gender"));
+	                m.setAge(rs.getInt("member_age"));
+	                m.setAdminYn(rs.getString("admin_yn"));
+	                m.setLendCount(rs.getInt("lend_count"));
+	                m.setOverdueCount(rs.getInt("overdue_count"));
+	                list.add(m);
+	            }
+	        }
+	    }
+
+	    return list;
+	}
+
+	public int getMemberCount(String searchType, String searchKeyword, Connection conn) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+	    sql.append("SELECT COUNT(*) AS total FROM MEMBER_TBL m ");
+
+	    if(searchKeyword != null && !searchKeyword.isEmpty()) {
+	        if("id".equals(searchType)) {
+	            sql.append("WHERE m.MEMBER_ID LIKE ? ");
+	        } else if("name".equals(searchType)) {
+	            sql.append("WHERE m.MEMBER_NAME LIKE ? ");
+	        }
+	    }
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+	        if(searchKeyword != null && !searchKeyword.isEmpty()) {
+	            pstmt.setString(1, "%" + searchKeyword + "%");
+	        }
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if(rs.next()) {
+	                return rs.getInt("total");
+	            }
+	        }
+	    }
+	    return 0;
+	}
+
+	
 
 }

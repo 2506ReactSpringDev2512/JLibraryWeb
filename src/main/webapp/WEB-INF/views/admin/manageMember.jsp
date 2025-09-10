@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="../resources/css/container.css">
 <link rel="stylesheet" href="../resources/css/manageMember.css">
 
@@ -17,25 +18,28 @@
                 <div class="search-options">
                     <label>
                         <input type="radio" rounded" name="searchType" value="bookName" checked>
-                        <span class="ml-2">이름</span>
+                        <span class="ml-2">아이디</span>
                     </label>
                     <label>
                         <input type="radio" name="searchType" value="author">
-                        <span class="ml-2">아이디</span>
+                        <span class="ml-2">이름</span>
                     </label>
                 </div>
    
                 <!-- 검색 영역 -->
                 <div id="searchArea">
+                <form action="/manage-member" method="get">
                     <div id="replaceForm">
-                        <input type="text" name="memberId" placeholder="회원검색">
-                        <button type="submit">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                        </button>
-                    </div>
+			            <input type="hidden" name="searchType" value="id">
+			            <input type="text" name="searchKeyword" placeholder="회원검색">
+			            <button type="submit">
+			                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+			                    <circle cx="11" cy="11" r="8"></circle>
+			                    <path d="m21 21-4.35-4.35"></path>
+			                </svg>
+			            </button>
+			        </div>
+                </form>
                 </div>
             </div>
 
@@ -58,164 +62,50 @@
                     </thead>
                     <tbody>
                         <!-- JSP에서 반복문을 통해 생성할 회원 리스트 항목 -->
+                        <c:forEach var="member" items="${memberList}">
                         <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>${member.memberId}</td>
+					        <td>${member.memberName}</td>
+					        <td>${member.phone}</td>
+					        <td>${member.gender}</td>
+					        <td>${member.age}</td>
+					        <td>${member.adminYn}</td>
+					        <td>${member.lendCount}</td>
+					        <td>${member.overdueCount}</td>
                             <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
+                                <a href="/admin/modify-member"><button class="action-button">수정</button></a>
+                                <a href="/delete-member"><button class="action-button">삭제</button></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>tjdowndo1233</td>
-                            <td>123123</td>
-                            <td>성주애</td>
-                            <td>010-1111-2222</td>
-                            <td>여자</td>
-                            <td>26</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button class="action-button">수정</button>
-                                <button class="action-button">삭제</button>
-                            </td>
-                        </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div id="addButton">
+            <a href="/add-member"><button class="action-button">추가</button></a>
             </div>
 
 
             <!-- 페이지네이션 -->
             <div class="pagination">
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>&gt;</button>
+			<c:if test="${currentPage > 1}">
+			        <a href="?page=${currentPage-1}&searchType=${param.searchType}&searchKeyword=${param.searchKeyword}">이전</a>
+		    </c:if>
+		
+		    <c:forEach begin="1" end="${totalPage}" var="i">
+		        <c:choose>
+		            <c:when test="${i == currentPage}">
+		                <b>${i}</b>
+		            </c:when>
+		            <c:otherwise>
+		                <a href="?page=${i}&searchType=${param.searchType}&searchKeyword=${param.searchKeyword}">${i}</a>
+		            </c:otherwise>
+		        </c:choose>
+		    </c:forEach>
+		
+		    <c:if test="${currentPage < totalPage}">
+		        <a href="?page=${currentPage+1}&searchType=${param.searchType}&searchKeyword=${param.searchKeyword}">다음</a>
+		    </c:if>
             </div>
 
 

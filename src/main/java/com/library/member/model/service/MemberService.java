@@ -2,6 +2,7 @@ package com.library.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.library.common.JDBCTemplate;
 import com.library.member.model.dao.MemberDAO;
@@ -39,5 +40,27 @@ public class MemberService implements InterfaceMemberService{
 		}
 		return result;
 	}
+
+	public List<Member> getMemberList(String searchType, String searchKeyword, int currentPage, int pageSize) {
+		List<Member> list = null;
+	    try (Connection conn = jdbcTemplate.getConnection()) {
+	        list = mDao.selectMemberList(searchType, searchKeyword, currentPage, pageSize, conn);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+
+	public int getMemberTotalCount(String searchType, String searchKeyword) {
+		int total = 0;
+	    try (Connection conn = jdbcTemplate.getConnection()) {
+	        total = mDao.getMemberCount(searchType, searchKeyword, conn);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return total;
+	}
+
+	
 
 }

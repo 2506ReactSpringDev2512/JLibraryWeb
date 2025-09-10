@@ -166,6 +166,13 @@
             margin: 0 4px;
             gap: 5px;
         }
+        
+        #addButton {
+        	margin-top: 30px;
+        	margin-right: 40px;
+        	display: flex;
+        	justify-content: end;
+        }
 
 
         .action-button:hover {

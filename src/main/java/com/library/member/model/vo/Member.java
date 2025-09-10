@@ -9,8 +9,31 @@ public class Member {
 	private int age;
 	private String adminYn;
 	
+	//대출/연체 도서 수
+    private int lendCount;
+    private int overdueCount;
 	
 	
+	public int getLendCount() {
+		return lendCount;
+	}
+
+
+	public void setLendCount(int lendCount) {
+		this.lendCount = lendCount;
+	}
+
+
+	public int getOverdueCount() {
+		return overdueCount;
+	}
+
+
+	public void setOverdueCount(int overdueCount) {
+		this.overdueCount = overdueCount;
+	}
+
+
 	public Member() {
 		super();
 	}

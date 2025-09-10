@@ -6,6 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.library.member.model.service.MemberService;
+import com.library.member.model.vo.Member;
 
 /**
  * Servlet implementation class manageMemberServlet
@@ -26,8 +30,25 @@ public class ManageMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/admin/manageMember.jsp")
-		.forward(request, response);
+		String searchType = request.getParameter("searchType");
+	    String searchKeyword = request.getParameter("searchKeyword");
+
+	    int currentPage = 1;
+	    int pageSize = 10;
+
+	    if(request.getParameter("page") != null) {
+	        currentPage = Integer.parseInt(request.getParameter("page"));
+	    }
+
+	    MemberService mService = new MemberService();
+	    List<Member> list = mService.getMemberList(searchType, searchKeyword, currentPage, pageSize);
+	    int totalCount = mService.getMemberTotalCount(searchType, searchKeyword);
+	    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+
+	    request.setAttribute("memberList", list);
+	    request.setAttribute("currentPage", currentPage);
+	    request.setAttribute("totalPage", totalPage);
+	    request.getRequestDispatcher("/WEB-INF/views/admin/manageMember.jsp").forward(request, response);
 	}
 
 	/**
