@@ -13,37 +13,35 @@
 
 
         <div class="form-container">
-            <form action="#" method="post">
+            <form action="/notice/modify" method="post">
+            	<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
                 <table class="form-table">
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td><input type="text" name="noticeSubject" value="임시 제목"></td>
+                            <td><input type="text" name="noticeSubject" value="${notice.noticeSubject}"></td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="noticeWriter" value="관리자" readonly></td>
+                            <td><input type="text" name="noticeWriter" value="${notice.noticeWriter}" readonly></td>
                         </tr>
                         <tr>
                             <th>작성일</th>
-                            <td><input type="text" name="noticeDate" value="임시 작성일"></td>
+                            <td><input type="text" name="noticeDate" value="${notice.noticeDate}" readonly></td>
                         </tr>
                         <tr>
                             <th>내용</th>
                             <td>
-                                <textarea name="noticeContent"></textarea>
+                                <textarea name="noticeContent">${notice.noticeContent}</textarea>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="form-buttons">
+            		<button>수정하기</button>
+        		</div>
             </form>
         </div>
 
-
-        <div class="form-buttons">
-            <button>수정하기</button>
-        </div>
-	
-	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </div>

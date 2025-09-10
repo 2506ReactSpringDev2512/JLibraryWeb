@@ -153,4 +153,96 @@ public class NoticeDAO implements InterfaceNoticeDAO{
 		return notice;
 	}
 
+	public int updateNotice(Notice notice, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE NOTICE_TBL SET NOTICE_SUBJECT = ?, NOTICE_CONTENT = ? WHERE NOTICE_NO = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		
+		pstmt.setString(1, notice.getNoticeSubject());
+		pstmt.setString(2, notice.getNoticeContent());
+		pstmt.setInt(3, notice.getNoticeNo());
+		
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		
+		return result;
+	}
+
+	public Notice selectPrevNotice(int noticeNo, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice notice = null;
+		
+		String query = "SELECT * FROM ( " +
+                " SELECT * FROM NOTICE_TBL WHERE NOTICE_NO < ? ORDER BY NOTICE_NO DESC " +
+                ") WHERE ROWNUM = 1";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, noticeNo);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+	        notice = new Notice();
+	        notice.setNoticeNo(rset.getInt("notice_no"));
+	        notice.setNoticeSubject(rset.getString("notice_subject"));
+	        notice.setNoticeWriter(rset.getString("notice_writer"));
+	        java.sql.Date date = rset.getDate("notice_date");
+	        if (date != null) {
+	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	            notice.setNoticeDate(sdf.format(date));
+	        } else {
+	            notice.setNoticeDate("날짜 없음");
+	        }
+	        notice.setNoticeContent(rset.getString("notice_content"));
+	        notice.setViewCount(rset.getInt("view_count"));
+	    }
+	    
+	    rset.close();
+	    pstmt.close();
+	    
+	    return notice;
+	}
+
+	public Notice selectNextNotice(int noticeNo, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    Notice notice = null;
+	    
+	    // notice_no 가 현재 글 번호보다 큰 것 중 가장 작은 값(다음글)
+	    String query = "SELECT * FROM ( " +
+                " SELECT * FROM NOTICE_TBL WHERE NOTICE_NO > ? ORDER BY NOTICE_NO ASC " +
+                ") WHERE ROWNUM = 1";
+	    
+	    pstmt = conn.prepareStatement(query);
+	    pstmt.setInt(1, noticeNo);
+	    
+	    rset = pstmt.executeQuery();
+	    
+	    if(rset.next()) {
+	        notice = new Notice();
+	        notice.setNoticeNo(rset.getInt("notice_no"));
+	        notice.setNoticeSubject(rset.getString("notice_subject"));
+	        notice.setNoticeWriter(rset.getString("notice_writer"));
+	        java.sql.Date date = rset.getDate("notice_date");
+	        if (date != null) {
+	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	            notice.setNoticeDate(sdf.format(date));
+	        } else {
+	            notice.setNoticeDate("날짜 없음");
+	        }
+	        notice.setNoticeContent(rset.getString("notice_content"));
+	        notice.setViewCount(rset.getInt("view_count"));
+	    }
+	    
+	    rset.close();
+	    pstmt.close();
+	    
+	    return notice;
+	}
+
 }

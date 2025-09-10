@@ -2,7 +2,6 @@ package com.library.notice.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.library.common.JDBCTemplate;
@@ -52,6 +51,7 @@ public class NoticeService implements InterfaceNoticeService{
         return list;
 	}
 
+	// 공지 추가
 	public int insertNotice(Notice notice) {
 		int result = 0;
 		
@@ -65,6 +65,7 @@ public class NoticeService implements InterfaceNoticeService{
 		return result;
 	}
 
+	// 공지 세부사항 조회
 	public Notice selectNoticeByNo(int noticeNo) {
 		Notice notice = null;
 		
@@ -78,6 +79,50 @@ public class NoticeService implements InterfaceNoticeService{
 		
 		
 		return notice;
+	}
+
+	// 공지 수정
+	public int updateNotice(Notice notice) {
+		int result = 0;
+		
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = nDao.updateNotice(notice, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+		return result;
+	}
+
+	// 공지 세부사항 이전글, 다음글
+	public Notice selectPreNoticeByNo(int noticeNo) {
+		Notice prevNotice = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			prevNotice = nDao.selectPrevNotice(noticeNo, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return prevNotice;
+	}
+
+	public Notice selectNextNoticeByNo(int noticeNo) {
+		Notice nextNotice = null;
+		
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			nextNotice = nDao.selectNextNotice(noticeNo, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 

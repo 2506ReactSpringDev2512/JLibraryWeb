@@ -21,8 +21,8 @@
                     <span class="views">조회수 ${notice.viewCount}</span>
                 </div>
             </div>
-            <div class="detail-content">
-                <c:out value="${notice.noticeContent}" escapeXml="false" />
+            <div class="detail-content" style="white-space: pre-line;"> <!-- 줄바꿈 문제 해결 -->
+                <c:out value="${notice.noticeContent}"/>
             </div>
         </div>
 
@@ -38,11 +38,11 @@
         <div class="prev-next">
             <div class="prev-next-item">
                 <span>이전글</span>
-                <a href="#">이전글 제목</a>
+                <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${prevNotice.noticeNo}">${prevNotice.noticeSubject}</a>
             </div>
             <div class="prev-next-item">
                 <span>다음글</span>
-                <a href="#">다음글 제목</a>
+                <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${nextNotice.noticeNo}">${nextNotice.noticeSubject}</a>
             </div>
         </div>
 	
