@@ -121,4 +121,13 @@ public class Member {
 	public void setAdminYn(String adminYn) {
 		this.adminYn = adminYn;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName + ", gender="
+				+ gender + ", phone=" + phone + ", age=" + age + ", adminYn=" + adminYn + ", lendCount=" + lendCount
+				+ ", overdueCount=" + overdueCount + "]";
+	}
+	
 }

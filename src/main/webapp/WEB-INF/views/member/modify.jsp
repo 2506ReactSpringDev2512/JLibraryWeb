@@ -18,20 +18,20 @@
                     <div class="form-row">
                         <label>아이디</label>
                         <!-- 아이디 (읽기 전용) -->
-						<input type="text" value="${member.memberId}" readonly>
+						<input type="text" value="${memberId}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>이름</label>
                         <!-- 이름 (읽기 전용) -->
-						<input type="text" value="${member.memberName}" readonly>
+						<input type="text" value="${memberName}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>현재 비밀번호</label>
-                        <input type="password" value= "${member.memberPwd} " readonly>
+                        <input type="password" value= "${memberPwd} " readonly>
                     </div>
 
 

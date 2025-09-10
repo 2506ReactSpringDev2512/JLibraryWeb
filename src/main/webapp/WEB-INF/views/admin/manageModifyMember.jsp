@@ -16,16 +16,16 @@
 
         <div id="tbody">
             <div id="modify_member">
-                <form action="/modify_member" method="">
+                <form action="/modify_member" method="post">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" value="${member.memberId}" readonly>
+                        <input type="text" value="${memberId}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>비밀번호</label>
-                        <input type="password" value= "${member.memberPwd} " readonly>
+                        <input type="password" value= "${memberPwd} " readonly>
                     </div>
 
 
@@ -33,7 +33,7 @@
 
                     <div class="form-row">
                         <label>이름</label>
-                        <input type="text" value="${member.memberName}" pattern="[가-힣]{2,5}" readonly>
+                        <input type="text" value="${memberName}" pattern="[가-힣]{2,5}" readonly>
                     </div>
 
 
@@ -49,7 +49,7 @@
                
                     <div class="form-row">
                         <label>나이</label>
-                        <input type="number" value="26" name="memberAge" min="1" max="100" required>
+                        <input type="number" value="${memberAge}" name="memberAge" min="1" max="100" required>
                     </div>
 
 
@@ -57,7 +57,7 @@
 
                     <div class="form-row">
                         <label>휴대폰 번호</label>
-                        <input type="text" value="010-1111-2222" name="memberPhone" pattern="010-[0-9]{4}-[0-9]{4}" required>
+                        <input type="text" value="${memberPhone}" name="memberPhone" pattern="010-[0-9]{4}-[0-9]{4}" required>
                     </div>
                     <input type="submit" value="수정하기"> <br>
                 </form>
