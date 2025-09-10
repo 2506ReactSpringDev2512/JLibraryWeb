@@ -38,11 +38,11 @@
         <div class="prev-next">
             <div class="prev-next-item">
                 <span>이전글</span>
-                <a href="#">이전글 제목</a>
+                <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${prevNotice.noticeNo}">${prevNotice.noticeSubject}</a>
             </div>
             <div class="prev-next-item">
                 <span>다음글</span>
-                <a href="#">다음글 제목</a>
+                <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${nextNotice.noticeNo}">${nextNotice.noticeSubject}</a>
             </div>
         </div>
 	

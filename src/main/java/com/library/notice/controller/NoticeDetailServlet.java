@@ -50,9 +50,16 @@ public class NoticeDetailServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
             return;
 		}
+		
+		// 이전글, 다음글 조회
+		Notice preNotice = noticeService.selectPreNoticeByNo(noticeNo);
+		Notice nextNotice = noticeService.selectNextNoticeByNo(noticeNo);
+		
 
 		// 4. request에 notice 객체 저장 후 포워딩
 		request.setAttribute("notice", notice);
+		request.setAttribute("preNotice", preNotice);
+		request.setAttribute("nextNotice", nextNotice);
 		request.getRequestDispatcher("/WEB-INF/views/notice/noticeDetail.jsp")
 		.forward(request, response);
 	}
