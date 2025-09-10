@@ -87,5 +87,24 @@ public class NoticeDAO implements InterfaceNoticeDAO{
 
         return list;
 	}
+	
+	public int insertNotice(Notice notice, Connection conn) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "INSERT INTO NOTICE_TBL (NOTICE_NO, NOTICE_SUBJECT, NOTICE_WRITER, NOTICE_DATE, NOTICE_CONTENT)" + "VALUES (NOTICE_SEQ.NEXTVAL, ?, ?, ?, ?)";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, notice.getNoticeSubject());
+		pstmt.setString(2, notice.getNoticeWriter());
+		pstmt.setString(3, notice.getNoticeDate());
+		pstmt.setString(4, notice.getNoticeContent());
+		
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		
+		return result;
+	}
 
 }

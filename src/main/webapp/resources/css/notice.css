@@ -149,7 +149,7 @@
             padding: 0 70px;
         }
        
-        .manager-buttons button {
+        .manager-buttons a {
             padding: 8px 15px;
             border: 1px solid #ccc;
             border-radius: 4px;

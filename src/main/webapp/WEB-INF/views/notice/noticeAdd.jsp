@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-container">
-            <form action="#" method="post">
+            <form action="${pageContext.request.contextPath}/notice/add" method="post">
                 <table class="form-table">
                     <tbody>
                         <tr>
@@ -35,13 +35,13 @@
                         </tr>
                     </tbody>
                 </table>
+		        <div class="form-buttons">
+		            <a href="${pageContext.request.contextPath}/notice"><button>글 작성</button> </a>
+		        </div>
             </form>
         </div>
 
 
-        <div class="form-buttons">
-            <button><a href="${pageContext.request.contextPath}/notice">글 작성</button>
-        </div>
 	
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

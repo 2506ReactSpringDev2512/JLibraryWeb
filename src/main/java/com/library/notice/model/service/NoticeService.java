@@ -52,4 +52,18 @@ public class NoticeService implements InterfaceNoticeService{
         return list;
 	}
 
+	public int insertNotice(Notice notice) {
+		int result = 0;
+		
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = nDao.insertNotice(notice, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
 }

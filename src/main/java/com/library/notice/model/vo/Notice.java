@@ -74,7 +74,13 @@ public class Notice {
    public void setViewCount(int viewCount) {
       this.viewCount = viewCount;
    }
-
    
-   
+	// 날짜를 문자열로 반환 (JSP에서 사용)
+//    public String getFormattedDate() {
+//        if (noticeDate != null) {
+//            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd");
+//            return sdf.format(noticeDate);
+//        }
+//        return "";
+//    }
 }

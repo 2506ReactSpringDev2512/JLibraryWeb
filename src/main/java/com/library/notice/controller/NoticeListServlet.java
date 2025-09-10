@@ -1,5 +1,11 @@
 package com.library.notice.controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import com.library.notice.model.service.NoticeService;
+import com.library.notice.model.vo.Notice;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,12 +24,12 @@ import com.library.notice.model.vo.Notice;
 public class NoticeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private NoticeService noticeService = new NoticeService();
     /**
      * @see HttpServlet#HttpServlet()
      */
     public NoticeListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
