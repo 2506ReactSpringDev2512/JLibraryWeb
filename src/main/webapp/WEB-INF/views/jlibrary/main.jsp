@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <link rel="stylesheet" href="../resources/css/main.css">
 <div id="body">
     <div class="search-loan-container">
@@ -22,10 +24,11 @@
     
     <div id="bestText">
         <p id="text">이달의 인기도서</p>
-        <p id="plus">+</p>
+        <a href="/search"><p id="plus">+</p></a>
     </div>
     
     <div id="bookList">
+    <c:out value="${bookList}" />
         <ul class="book-grid">
             <li class="book-card">
                 <a href="/book/detail?id=1">
@@ -45,8 +48,8 @@
                         <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 2" loading="lazy">
                     </div>
                     <div class="meta">
-                        <p class="title">데미안</p>
-                        <p class="publisher">자화상</p>
+                        <p class="title">책 제목</p>
+                        <p class="publisher">출판사</p>
                     </div>
                 </a>
             </li>
@@ -57,8 +60,8 @@
                         <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 3" loading="lazy">
                     </div>
                     <div class="meta">
-                        <p class="title">노인과 바다</p>
-                        <p class="publisher">삼성 출판사</p>
+                        <p class="title">책 제목</p>
+                        <p class="publisher">출판사</p>
                     </div>
                 </a>
             </li>
@@ -70,8 +73,8 @@
                             onerror="${pageContext.request.contextPath}/resources/images/booksample.png'">
                     </div>
                     <div class="meta">
-                        <p class="title">해리포터와 마법사의 돌 완전판 특별 에디션</p>
-                        <p class="publisher">시공 주니어</p>
+                        <p class="title">책 제목</p>
+                        <p class="publisher">출판사</p>
                     </div>
                 </a>
             </li>
