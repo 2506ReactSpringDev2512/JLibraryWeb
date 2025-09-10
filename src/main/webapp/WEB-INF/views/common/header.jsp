@@ -20,7 +20,6 @@
         <c:if test="${sessionScope.memberId ne null && sessionScope.memberId eq 'admin123' }">
         <div id="loginHeader">
                 <a href="/manage-member" id="manageMember">회원관리</a>
-                <a href="/manage-book" id="manageBook">도서 관리</a>
                 <a href="/logout" id="logout">로그아웃</a>
         </div>
         </c:if>
@@ -37,7 +36,12 @@
             <ul id="topMenu">
                 <li><a href="/lib-info">도서관 소개</a></li>
                 <li><a href="/notice">공지사항</a></li>
+                <c:if test="${sessionScope.memberId ne 'admin123' || memberId eq null }">
                 <li><a href="/search">도서 검색</a></li>
+                </c:if>
+                <c:if test="${sessionScope.memberId eq 'admin123' }">
+                <li><a href="/search">도서 관리</a></li>
+                </c:if>
                 <li><a href="/mylibrary">나의 도서관</a></li>
             </ul>
         </div>

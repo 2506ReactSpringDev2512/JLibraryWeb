@@ -197,3 +197,54 @@ h3 a {
     text-decoration: none; 
     color: black;
 }
+
+
+/* 관리자용 버튼 */
+.button-group {
+    display: flex;
+    gap: 5px;
+    margin-left: auto;
+}
+
+.action-btn {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.delete-btn {
+    border-color: #d9534f;
+    color: #d9534f;
+}
+
+.delete-btn:hover {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.add-book-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.add-book-btn {
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-book-btn:hover {
+    background-color: #5a6268;
+}

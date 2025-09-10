@@ -7,10 +7,18 @@
 <div id="container">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
     <!-- 상단 헤더 -->
+    <c:if test="${sessionScope.memberId ne 'admin123' || memberId eq null }">
     <div id="subtitleArea">
         <div id="subtitle">도서 검색</div>
         <p>메인</p> <p>></p> <p>도서 검색</p>
     </div>
+    </c:if>
+    <c:if test="${sessionScope.memberId eq 'admin123' }">
+    <div id="subtitleArea">
+        <div id="subtitle">도서 관리</div>
+        <p>메인</p> <p>></p> <p>도서 관리[관리자]</p>
+    </div>
+    </c:if>
     <div id="webContainer">
         <!-- 검색 영역 박스 -->
         <div id="searchArea-box">
@@ -61,10 +69,25 @@
 			                <p>저자 : ${book.authr_nm}</p>
 			                <p>출판사 : ${book.publisher_nm}</p>
 			            </div>
+			            
+			            <c:if test="${sessionScope.memberId ne 'admin123' || memberId eq null }">
 			            <span>${book.lend_yn }</span>
+			            </c:if>
+			            <c:if test="${sessionScope.memberId eq 'admin123' }">
+			           	<div class="button-group">
+                            <button class="action-btn modify-btn">수정</button>
+                            <button class="action-btn delete-btn">삭제</button>
+                        </div>
+                        </c:if>
 			        </div>
 			    </c:forEach>
             </div>
+            
+            <c:if test="${sessionScope.memberId eq 'admin123' }">
+            <div class="add-book-container">
+                    <button class="add-book-btn">도서 추가</button>
+            </div>
+            </c:if>
 
             <!-- 페이지네이션 -->
             <div class="pagination">
