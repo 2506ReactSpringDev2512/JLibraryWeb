@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.library.member.model.service.MemberService;
+import com.library.member.model.vo.Member;
+
 /**
  * Servlet implementation class manageModifyMember
  */
@@ -34,13 +37,18 @@ public class ManageModifyMember extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("");
-		String memberPw = request.getParameter("");
-		String memberName = request.getParameter("");
-		String memberGender = request.getParameter("");
-		int memberAge = Integer.parseInt(request.getParameter(""));
-		String memberPhone = request.getParameter("");
-		
+		String gender = request.getParameter("gender");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String phone = request.getParameter("phone");
+		Member member = new Member(gender, phone, age);
+		MemberService mService = new MemberService();
+		int result = mService.modifyMember(member);
+		if(result > 0) {
+			response.sendRedirect("/");
+		}else {
+			request.setAttribute("errorMsg", "회원 정보가 수정되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
-
 }

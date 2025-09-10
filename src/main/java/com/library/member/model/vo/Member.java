@@ -69,6 +69,16 @@ public class Member {
 		this.age = age;
 	}
 
+	
+	public Member(String gender, String phone, int age) {
+		super();
+		this.gender = gender;
+		this.phone = phone;
+		this.age = age;
+	}
+
+
+
 	public String getMemberId() {
 		return memberId;
 	}

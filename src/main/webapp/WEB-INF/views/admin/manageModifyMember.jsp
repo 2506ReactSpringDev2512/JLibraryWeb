@@ -19,13 +19,13 @@
                 <form action="/modify_member" method="">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" name="memberId" value="tjdwndo1233" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly required>
+                        <input type="text" name="memberId" value="${member.memberId}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>비밀번호</label>
-                        <input type="password" name="memberPw" value="123123" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly required>
+                        <input type="password" name="memberPw" value="${member.memberPw}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
                     </div>
 
 
@@ -33,7 +33,7 @@
 
                     <div class="form-row">
                         <label>이름</label>
-                        <input type="text" value="성주애" pattern="[가-힣]{2,5}" required>
+                        <input type="text" value="${member.memberName}" pattern="[가-힣]{2,5}" readonly>
                     </div>
 
 
