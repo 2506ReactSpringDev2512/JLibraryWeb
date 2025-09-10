@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.library.notice.model.vo.Notice;
@@ -75,8 +76,17 @@ public class NoticeDAO implements InterfaceNoticeDAO{
             n.setNoticeContent(rset.getString("notice_content"));
             n.setNoticeWriter(rset.getString("notice_writer"));
 
-            // Date → String 변환
-            n.setNoticeDate(sdf.format(rset.getDate("notice_date")));
+            // ✅ null 체크 추가
+            Date date = rset.getDate("notice_date");
+            if (date != null) {
+                n.setNoticeDate(sdf.format(date));
+            } else {
+                n.setNoticeDate("날짜 없음"); // 또는 "", null 등
+            }
+            
+            
+//            // Date → String 변환
+//            n.setNoticeDate(sdf.format(rset.getDate("notice_date")));
 
             n.setViewCount(rset.getInt("view_count"));
             list.add(n);

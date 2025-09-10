@@ -37,9 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="notice" items="${noticeList}">
+                    <c:forEach var="notice" items="${noticeList}" varStatus="status">
 					    <tr>
-					        <td>${notice.noticeNo}</td>
+					        <td>${listCount - ((currentPage - 1) * limit + status.index)}</td>
 					        <td><a href="#">${notice.noticeSubject}</a></td>
 					        <td>${notice.noticeWriter}</td>
 					        <td>${notice.noticeDate}</td>
@@ -49,9 +49,11 @@
                 </tbody>
             </table>
         </div>
+        <c:if test="${not empty loginUser and loginUser.adminYn == 'Y'}">
         <div class="manager-buttons">
             <a href="${pageContext.request.contextPath}/notice/add" class="write-button">글쓰기</a>
         </div>
+        </c:if>
         <!-- 페이지네이션 -->
         <div class="pagination">
 		    <c:set var="maxPage" value="${(listCount / limit) + (listCount % limit > 0 ? 1 : 0)}"/>
