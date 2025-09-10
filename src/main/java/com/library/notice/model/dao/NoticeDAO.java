@@ -153,4 +153,23 @@ public class NoticeDAO implements InterfaceNoticeDAO{
 		return notice;
 	}
 
+	public int updateNotice(Notice notice, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE NOTICE_TBL SET NOTICE_SUBJECT = ?, NOTICE_CONTENT = ? WHERE NOTICE_NO = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		
+		pstmt.setString(1, notice.getNoticeSubject());
+		pstmt.setString(2, notice.getNoticeContent());
+		pstmt.setInt(3, notice.getNoticeNo());
+		
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		
+		return result;
+	}
+
 }

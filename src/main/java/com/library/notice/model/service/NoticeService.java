@@ -52,6 +52,7 @@ public class NoticeService implements InterfaceNoticeService{
         return list;
 	}
 
+	// 공지 추가
 	public int insertNotice(Notice notice) {
 		int result = 0;
 		
@@ -65,6 +66,7 @@ public class NoticeService implements InterfaceNoticeService{
 		return result;
 	}
 
+	// 공지 세부사항 조회
 	public Notice selectNoticeByNo(int noticeNo) {
 		Notice notice = null;
 		
@@ -78,6 +80,22 @@ public class NoticeService implements InterfaceNoticeService{
 		
 		
 		return notice;
+	}
+
+	// 공지 수정
+	public int updateNotice(Notice notice) {
+		int result = 0;
+		
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = nDao.updateNotice(notice, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+		return result;
 	}
 
 
