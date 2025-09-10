@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="../resources/css/search.css">
 <link rel="stylesheet" href="../resources/css/container.css">
 
@@ -76,7 +77,7 @@
 			            <c:if test="${sessionScope.memberId eq 'admin123' }">
 			           	<div class="button-group">
                             <button class="action-btn modify-btn">수정</button>
-                            <button class="action-btn delete-btn">삭제</button>
+                            <button class="action-btn delete-btn" data-bookno="${book.book_no}">삭제</button>
                         </div>
                         </c:if>
 			        </div>
@@ -116,3 +117,29 @@
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </div>
+
+
+<script>
+$(document).ready(function() {
+    $(".delete-btn").click(function() {
+        if (!confirm("정말 이 책을 삭제하시겠습니까?")) return;
+
+        let btn = $(this);
+        let bookNo = btn.data("bookno");
+
+        $.ajax({
+            url: "/delete-book",
+            type: "POST",
+            data: { bookNo: bookNo },
+            success: function(response) {
+                // 삭제 성공 시 화면에서 해당 책 항목 제거
+                btn.closest(".book-item").remove();
+                alert("삭제가 완료되었습니다!");
+            },
+            error: function() {
+                alert("삭제 실패! 다시 시도해주세요.");
+            }
+        });
+    });
+});
+</script>

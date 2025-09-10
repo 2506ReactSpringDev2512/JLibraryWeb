@@ -120,6 +120,20 @@ public class BookDAO implements InterfaceBookDAO{
 
 	    return book;
 	}
+
+	public int deleteBook(Connection conn, int bookNo) throws SQLException {
+		String sql = "DELETE FROM BOOK_TBL WHERE BOOK_NO = ?";
+        int result = 0;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, bookNo);
+            result = pstmt.executeUpdate();
+            pstmt.close();
+        }
+        conn.close();
+        
+        return result;
+    }
 	
 	
 }

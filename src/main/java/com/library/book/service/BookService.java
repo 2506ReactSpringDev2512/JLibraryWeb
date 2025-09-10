@@ -87,4 +87,26 @@ public class BookService implements InterfaceBookService {
 	    return book;
 	}
 
+	public boolean deleteBook(int bookNo) {
+		Connection conn = null;
+        boolean result = false;
+
+        try {
+            conn = jdbcTemplate.getConnection();
+            int rows = bDao.deleteBook(conn, bookNo);
+
+            if(rows > 0) {
+                JDBCTemplate.commit(conn);
+                result = true;
+            } else {
+                JDBCTemplate.rollback(conn);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JDBCTemplate.rollback(conn);
+        }
+
+        return result;
+	}
+
 }
