@@ -117,4 +117,40 @@ public class NoticeDAO implements InterfaceNoticeDAO{
 		return result;
 	}
 
+	public Notice selectNoticeByNo(int noticeNo, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, noticeNo);
+		
+		rset = pstmt.executeQuery();
+		
+		Notice notice = null;
+		if(rset.next()) {
+			notice = new Notice();
+			notice.setNoticeNo(rset.getInt("notice_no"));
+			notice.setNoticeSubject(rset.getString("notice_subject"));
+			notice.setNoticeWriter(rset.getString("notice_writer"));
+			// ✅ 날짜 포맷 지정 (yyyy-MM-dd)
+		    java.sql.Date date = rset.getDate("notice_date");
+		    if (date != null) {
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		        notice.setNoticeDate(sdf.format(date));
+		    } else {
+		        notice.setNoticeDate("날짜 없음");
+		    }
+//			notice.setNoticeDate(rset.getString("notice_date"));
+			notice.setNoticeContent(rset.getString("notice_content"));
+			notice.setViewCount(rset.getInt("view_count"));
+		}
+		
+		rset.close();
+		pstmt.close();
+		
+		return notice;
+	}
+
 }
