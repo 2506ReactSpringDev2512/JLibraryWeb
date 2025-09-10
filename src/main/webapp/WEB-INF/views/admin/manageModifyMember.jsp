@@ -19,13 +19,13 @@
                 <form action="/modify_member" method="">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" name="memberId" value="${member.memberId}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
+                        <input type="text" value="${member.memberId}" readonly>
                     </div>
 
 
                     <div class="form-row">
                         <label>비밀번호</label>
-                        <input type="password" name="memberPw" value="${member.memberPw}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
+                        <input type="password" value= "${member.memberPwd} " readonly>
                     </div>
 
 

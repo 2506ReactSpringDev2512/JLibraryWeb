@@ -29,9 +29,15 @@ public class ManageModifyMember extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/admin/manageModifyMember.jsp")
-		.forward(request, response);
-	}
+		Member loginMember = (Member) request.getSession().getAttribute("memberId");
+        
+        if (loginMember != null) {
+            request.setAttribute("member", loginMember); // JSP에서 ${member.xxx} 사용 가능
+        }
+
+        request.getRequestDispatcher("/WEB-INF/views/member/modify.jsp")
+               .forward(request, response);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
