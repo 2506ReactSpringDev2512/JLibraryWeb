@@ -74,7 +74,7 @@
 					        <td>${member.overdueCount}</td>
                             <td>
                                 <a href="/admin/modify-member"><button class="action-button">수정</button></a>
-                                <a href="/delete-member"><button class="action-button">삭제</button></a>
+                                <button class="action-button" onclick="deleteMember('${member.memberId}', '${member.memberName}', ${member.lendCount})">삭제</button>
                             </td>
                         </tr>
                         </c:forEach>
@@ -114,3 +114,23 @@
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </div>
+
+<script>
+function deleteMember(memberId, memberName) {
+    if(confirm("정말 '" + memberName + "'의 데이터를 삭제하시겠습니까?")) {
+        // form을 만들어 POST로 보내는 방식
+        let form = document.createElement('form');
+        form.method = 'post';
+        form.action = '/delete-member';
+        
+        let input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'memberId';
+        input.value = memberId;
+        form.appendChild(input);
+        
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>

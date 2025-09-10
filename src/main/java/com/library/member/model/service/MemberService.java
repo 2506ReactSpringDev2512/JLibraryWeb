@@ -89,4 +89,43 @@ public class MemberService implements InterfaceMemberService{
         } 
         return password;
 	}
+
+	public int deleteMember(String memberId) {
+		Connection conn = null;
+	    int result = 0;
+
+	    try {
+	        conn = jdbcTemplate.getConnection();
+	        result = mDao.deleteMember(conn, memberId); // SQLException 발생 가능
+	        if(result > 0) {
+	            conn.commit();
+	        } else {
+	            conn.rollback();
+	        }
+	    } catch(SQLException e) { // 여기서 SQLException 잡기
+	        e.printStackTrace();
+	        try { if(conn != null) conn.rollback(); } catch(SQLException ex) { ex.printStackTrace(); }
+	    } finally {
+	        try { if(conn != null) conn.close(); } catch(SQLException e) { e.printStackTrace(); }
+	    }
+
+	    return result;
+    }
+    
+	
+	public int selectLendCount(String memberId) {
+		Connection conn = null;
+        int count = 0;
+
+        try {
+            conn = jdbcTemplate.getConnection();
+            count = mDao.selectLendCount(conn, memberId); // SQLException 발생 가능
+        } catch (SQLException e) { // SQLException 잡기
+            e.printStackTrace();
+        } finally {
+            try { if(conn != null) conn.close(); } catch(SQLException e) { e.printStackTrace(); }
+        }
+
+        return count;
+	}
 }

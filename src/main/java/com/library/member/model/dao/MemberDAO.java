@@ -177,6 +177,47 @@ public class MemberDAO implements InterfaceMemberDAO{
         return pwd;
 	}
 
+	public int selectLendCount(Connection conn, String memberId) throws SQLException {
+		String sql = "SELECT COUNT(*) AS CNT FROM LENDINFO_TBL WHERE MEMBER_ID=?";
+        int count = 0;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, memberId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    count = rs.getInt("CNT");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+	}
+
+	public int deleteMember(Connection conn, String memberId) throws SQLException {
+		String sql = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID=?";
+        int result = 0;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, memberId);
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
+	public int selectOngoingLendCount(Connection conn, String memberId) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM LENDINFO_TBL WHERE MEMBER_ID = ? AND RETURN_DATE >= SYSDATE";
+	    
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, memberId);
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt(1); // 대출 중인 도서 수
+	        }
+	    }
+	    return 0;
+	}
+
 	
 
 
