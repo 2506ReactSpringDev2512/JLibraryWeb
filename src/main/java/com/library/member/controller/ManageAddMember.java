@@ -48,7 +48,7 @@ public class ManageAddMember extends HttpServlet {
 		int result = 0;
 		result = mService.insertMember(member);
 		if(result > 0) {
-			response.sendRedirect("/login");
+			response.sendRedirect("/manage-member");
 		}else {
 			request.setAttribute("errorMag", "회원 정보 입력이 완료되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")

@@ -28,7 +28,7 @@
 
 
         <div class="nav-buttons">
-            <button><a href="/notice">목록</a></button>
+            <a href="/notice"><button>목록</button></a>
             <c:if test="${not empty loginUser and loginUser.adminYn == 'Y'}">
             <button><a href="${pageContext.request.contextPath}/notice/modify?noticeNo=${notice.noticeNo}">수정</a></button>
             </c:if>

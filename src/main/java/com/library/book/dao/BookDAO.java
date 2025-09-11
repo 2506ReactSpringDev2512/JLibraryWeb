@@ -148,6 +148,7 @@ public class BookDAO implements InterfaceBookDAO{
 
 	        return pstmt.executeUpdate();
 	    }
+	}
 	    
 	public int updateBook(Book book, Connection conn) throws SQLException {
 		int result = 0;
