@@ -29,10 +29,10 @@
 			        <input type="radio" name="searchType" value="title_nm" ${searchType == 'title_nm' ? 'checked' : ''}> 도서명
 			    </label>
 			    <label>
-			        <input type="radio" name="searchType" value="authr_nm" ${searchType == 'authr_nm' ? 'checked' : ''}> 저자
+			        <input type="radio" name="searchType" value="authr_nm" ${searchType == 'authr_nm' ? 'checked' : ''}> 저자(개발중)
 			    </label>
 			    <label>
-			        <input type="radio" name="searchType" value="publisher_nm" ${searchType == 'publisher_nm' ? 'checked' : ''}> 출판사
+			        <input type="radio" name="searchType" value="publisher_nm" ${searchType == 'publisher_nm' ? 'checked' : ''}> 출판사(개발중)
 			    </label>
 			</div>
 

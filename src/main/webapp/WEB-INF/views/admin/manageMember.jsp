@@ -22,7 +22,7 @@
                     </label>
                     <label>
                         <input type="radio" name="searchType" value="author">
-                        <span class="ml-2">이름</span>
+                        <span class="ml-2">이름(개발중)</span>
                     </label>
                 </div>
    
