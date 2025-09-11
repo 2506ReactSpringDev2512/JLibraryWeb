@@ -212,6 +212,50 @@ public class MemberDAO implements InterfaceMemberDAO{
 	    return 0;
 	}
 
+	public Member selectMemberById(Connection conn, String memberId) {
+		 Member member = null;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = "SELECT MEMBER_ID, MEMBER_NAME, MEMBER_GENDER, MEMBER_AGE, MEMBER_PHONE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, memberId);
+            rset = pstmt.executeQuery();
+            if(rset.next()) {
+                member = new Member(
+                		rset.getString("MEMBER_ID"),
+                		rset.getString("MEMBER_NAME"),
+                		rset.getString("MEMBER_GENDER"),
+                		rset.getInt("MEMBER_AGE"),
+                		rset.getString("MEMBER_PHONE")
+                );
+            }
+	        } catch(Exception e) { e.printStackTrace(); }
+	        finally {
+	            try { if(rset != null) rset.close(); } catch(Exception e) {}
+	            try { if(pstmt != null) pstmt.close(); } catch(Exception e) {}
+	        }
+	        return member;
+	}
+
+	public int updateMember(Connection conn, Member member) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String sql = "UPDATE MEMBER_TBL SET MEMBER_GENDER = ?, MEMBER_AGE = ?, MEMBER_PHONE = ? WHERE MEMBER_ID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, member.getGender());
+            pstmt.setInt(2, member.getAge());
+            pstmt.setString(3, member.getPhone());
+            pstmt.setString(4, member.getMemberId());
+            result = pstmt.executeUpdate();
+        } catch(Exception e) { e.printStackTrace(); }
+        finally {
+            try { if(pstmt != null) pstmt.close(); } catch(Exception e) {}
+        }
+        return result;
+	}
+
 	
 
 

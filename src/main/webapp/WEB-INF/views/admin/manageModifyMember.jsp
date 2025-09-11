@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <link rel="stylesheet" href="../resources/css/manageModifyMember.css">
 	<link rel="stylesheet" href="../resources/css/container.css">
     
@@ -16,19 +17,12 @@
 
         <div id="tbody">
             <div id="modify_member">
-                <form action="/modify_member" method="">
+            <c:if test="${member != null}">
+                <form action="/admin/modify-member" method="post">
                     <div class="form-row">
                         <label>아이디</label>
                         <input type="text" name="memberId" value="${member.memberId}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
                     </div>
-
-
-                    <div class="form-row">
-                        <label>비밀번호</label>
-                        <input type="password" name="memberPw" value="${member.memberPw}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
-                    </div>
-
-
 
 
                     <div class="form-row">
@@ -42,14 +36,14 @@
                     <div class="form-row">
                         <label>성별</label>
                         <div class="gender">
-                            <label for="male"><input type="radio" name="memberGender" id="male" value="M" checked> 남자 </label> <!-- value값에 따라 어떤성별에 checked 되게 할지 [미반영] -->
-                            <label for="female"><input type="radio" name="memberGender" id="female" value="F"> 여자 </label>
+                            <input type="radio" name="memberGender" value="M" ${member.gender == 'M' ? 'checked' : ''}>남
+                            <input type="radio" name="memberGender" value="F" ${member.gender == 'F' ? 'checked' : ''}>여
                         </div>
                     </div>
                
                     <div class="form-row">
                         <label>나이</label>
-                        <input type="number" value="26" name="memberAge" min="1" max="100" required>
+                        <input type="number" name="memberAge" value="${member.age}">
                     </div>
 
 
@@ -57,10 +51,11 @@
 
                     <div class="form-row">
                         <label>휴대폰 번호</label>
-                        <input type="text" value="010-1111-2222" name="memberPhone" pattern="010-[0-9]{4}-[0-9]{4}" required>
+                        <input type="text" name="memberPhone" value="${member.phone}" pattern="010-[0-9]{4}-[0-9]{4}" required>
                     </div>
                     <input type="submit" value="수정하기"> <br>
                 </form>
+                </c:if>
             </div>
         </div>
 	

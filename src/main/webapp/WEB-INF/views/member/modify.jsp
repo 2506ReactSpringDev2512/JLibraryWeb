@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-row">
                     <label>현재 비밀번호</label>
-                    <input type="password" value= "${memberPwd} " readonly>
+                    <input type="password" value= "${member.memberPwd} " readonly>
                 </div>
 
                 <div class="form-row">

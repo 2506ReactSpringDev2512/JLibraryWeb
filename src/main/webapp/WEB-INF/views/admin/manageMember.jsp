@@ -73,7 +73,7 @@
 					        <td>${member.lendCount}</td>
 					        <td>${member.overdueCount}</td>
                             <td>
-                                <a href="/admin/modify-member"><button class="action-button">수정</button></a>
+                                <a href="/admin/modify-member?memberId=${member.memberId}"><button class="action-button">수정</button></a>
                                 <button class="action-button" onclick="deleteMember('${member.memberId}', '${member.memberName}', ${member.lendCount})">삭제</button>
                             </td>
                         </tr>

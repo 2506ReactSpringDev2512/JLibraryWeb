@@ -133,4 +133,31 @@ public class MemberService implements InterfaceMemberService{
 
         return count;
 	}
+
+	public int manageModifyMember(Member member) {
+		Connection conn = null;
+        int result = 0;
+        try {
+            conn = jdbcTemplate.getConnection();
+            result = mDao.updateMember(conn, member);
+            if(result > 0) JDBCTemplate.commit(conn);
+            else JDBCTemplate.rollback(conn);
+            conn.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+            JDBCTemplate.rollback(conn);
+        }
+        return result;
+	}
+
+	public Member getMemberById(String memberId) {
+		Connection conn = null;
+        Member member = null;
+        try {
+            conn = jdbcTemplate.getConnection();
+            member = mDao.selectMemberById(conn, memberId);
+            conn.close();
+        } catch(Exception e) { e.printStackTrace(); }
+        return member;
+	}
 }
