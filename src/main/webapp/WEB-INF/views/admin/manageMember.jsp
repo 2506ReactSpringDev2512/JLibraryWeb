@@ -15,22 +15,21 @@
             <!-- 검색 영역 박스 -->
             <div id="searchArea-box">
                 <!-- 검색 필터 -->
+                <form action="/manage-member" method="get">
                 <div class="search-options">
                     <label>
-                        <input type="radio" rounded" name="searchType" value="bookName" checked>
+                        <input type="radio" name="searchType" value="member_id" checked="${searchType eq 'member_id'}">
                         <span class="ml-2">아이디</span>
                     </label>
                     <label>
-                        <input type="radio" name="searchType" value="author">
-                        <span class="ml-2">이름(개발중)</span>
+                        <input type="radio" name="searchType" value="member_name" checked="${searchType eq 'member_name'}">
+                        <span class="ml-2">이름</span>
                     </label>
                 </div>
    
                 <!-- 검색 영역 -->
                 <div id="searchArea">
-                <form action="/manage-member" method="get">
                     <div id="replaceForm">
-			            <input type="hidden" name="searchType" value="id">
 			            <input type="text" name="searchKeyword" placeholder="회원검색">
 			            <button type="submit">
 			                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
@@ -39,8 +38,8 @@
 			                </svg>
 			            </button>
 			        </div>
-                </form>
                 </div>
+                </form>
             </div>
 
 
@@ -54,7 +53,7 @@
                             <th>전화번호</th>
                             <th>성별</th>
                             <th>나이</th>
-                            <th>성별</th>
+                            <th>관리자</th>
                             <th>대출 도서 수</th>
                             <th>연체 도서 수</th>
                             <th></th>

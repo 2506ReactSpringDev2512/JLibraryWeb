@@ -24,21 +24,21 @@
         <!-- 검색 영역 박스 -->
         <div id="searchArea-box">
             <!-- 검색 필터 -->
+            <form action="/search" method="get">
             <div class="search-options">
 			    <label>
-			        <input type="radio" name="searchType" value="title_nm" ${searchType == 'title_nm' ? 'checked' : ''}> 도서명
+			        <input type="radio" name="searchType" value="title_nm" ${searchType eq 'title_nm' ? 'checked' : ''}> 도서명
 			    </label>
 			    <label>
-			        <input type="radio" name="searchType" value="authr_nm" ${searchType == 'authr_nm' ? 'checked' : ''}> 저자(개발중)
+			        <input type="radio" name="searchType" value="authr_nm" ${searchType eq 'authr_nm' ? 'checked' : ''}> 저자
 			    </label>
 			    <label>
-			        <input type="radio" name="searchType" value="publisher_nm" ${searchType == 'publisher_nm' ? 'checked' : ''}> 출판사(개발중)
+			        <input type="radio" name="searchType" value="publisher_nm" ${searchType eq 'publisher_nm' ? 'checked' : ''}> 출판사
 			    </label>
 			</div>
 
             <!-- 검색 영역 -->
             <div id="searchArea">
-                <form action="/search" method="get">
                     <input type="text" name="keyword" placeholder="도서검색">
                     <button type="submit">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
@@ -46,8 +46,8 @@
                             <path d="m21 21-4.35-4.35"></path>
                         </svg>
                     </button>
-                </form>
             </div>
+            </form>
         </div>
         
         

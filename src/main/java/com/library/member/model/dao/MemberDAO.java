@@ -75,9 +75,9 @@ public class MemberDAO implements InterfaceMemberDAO{
 	       .append("  FROM MEMBER_TBL m ");
 
 	    if(searchKeyword != null && !searchKeyword.isEmpty()) {
-	        if("id".equals(searchType)) {
+	        if("member_id".equals(searchType)) {
 	            sql.append("WHERE m.MEMBER_ID LIKE ? ");
-	        } else if("name".equals(searchType)) {
+	        } else if("member_name".equals(searchType)) {
 	            sql.append("WHERE m.MEMBER_NAME LIKE ? ");
 	        }
 	    }

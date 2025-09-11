@@ -33,7 +33,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchType = request.getParameter("searchType");
-        String keyword = request.getParameter("keyword");
+        String keyword = request.getParameter("keyword") != null ? request.getParameter("keyword") : "";
 
         int page = 1;
         String pageParam = request.getParameter("page");
