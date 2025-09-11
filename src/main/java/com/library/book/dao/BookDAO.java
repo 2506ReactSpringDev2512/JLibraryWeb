@@ -135,6 +135,33 @@ public class BookDAO implements InterfaceBookDAO{
         return result;
     }
 
+	public int updateBook(Book book, Connection conn) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "UPDATE BOOK_TBL SET TITLE_NM = ?, AUTHR_NM = ?, "
+				+ "PUBLISHER_NM = ?, PRC_VALUE = ?, ISBN_THIRTEEN_NO = ?, "
+				+ "BOOK_INTRCN_CN = ? WHERE BOOK_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, book.getTitle_nm());
+			pstmt.setString(2, book.getAuthr_nm());
+			pstmt.setString(3, book.getPublisher_nm());
+			pstmt.setString(4, book.getPrc_value());
+			pstmt.setString(5, book.getIsbn_thirteen_no());
+			pstmt.setString(6, book.getBook_intrcn_cn());
+			pstmt.setInt(7, book.getBook_no());
+			
+			result = pstmt.executeUpdate();
+		} finally {
+			if (pstmt != null) pstmt.close();
+		}
+		
+		return result;
+	}
+
 	
 	
 }

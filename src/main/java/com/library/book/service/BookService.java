@@ -110,5 +110,37 @@ public class BookService implements InterfaceBookService {
         return result;
 	}
 
+	public Book selectBookByNo(int bookNo) {
+		Connection conn = null;
+		Book book = null;
+
+		try {
+			conn = jdbcTemplate.getConnection();
+			book = bDao.getBookById(bookNo, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return book;
+	}
+
+	public int updateBook(Book book) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = jdbcTemplate.getConnection();
+			result = bDao.updateBook(book, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+
 
 }
