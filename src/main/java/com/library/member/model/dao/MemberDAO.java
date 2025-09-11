@@ -27,6 +27,7 @@ public class MemberDAO implements InterfaceMemberDAO{
 		rset.close();
 		pstmt.close();
 		conn.close();
+		System.out.println(mOne);
  		return mOne;
 	}
 	

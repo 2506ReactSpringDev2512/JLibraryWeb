@@ -131,4 +131,5 @@ public class Member {
 	public void setAdminYn(String adminYn) {
 		this.adminYn = adminYn;
 	}
+	
 }

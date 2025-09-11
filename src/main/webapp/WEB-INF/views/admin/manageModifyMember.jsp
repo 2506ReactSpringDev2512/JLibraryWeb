@@ -12,26 +12,18 @@
             <p>메인</p> <p>></p> <p>회원 관리</p> <p>></p> <p>회원 수정[관리자]</p>
         </div>
 
-
-
-
         <div id="tbody">
             <div id="modify_member">
             <c:if test="${member != null}">
                 <form action="/admin/modify-member" method="post">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" name="memberId" value="${member.memberId}" minlength="6" maxlength="15" pattern="[A-Za-z0-9]+" readonly>
+                        <input type="text" value="${memberId}" readonly>
                     </div>
-
 
                     <div class="form-row">
-                        <label>이름</label>
-                        <input type="text" value="${member.memberName}" pattern="[가-힣]{2,5}" readonly>
+                        <input type="text" value="${memberName}" pattern="[가-힣]{2,5}" readonly>
                     </div>
-
-
-
 
                     <div class="form-row">
                         <label>성별</label>
@@ -43,11 +35,8 @@
                
                     <div class="form-row">
                         <label>나이</label>
-                        <input type="number" name="memberAge" value="${member.age}">
+                        <input type="number" name="memberAge" value="${member.age}" min="1" max="100" required>
                     </div>
-
-
-
 
                     <div class="form-row">
                         <label>휴대폰 번호</label>
