@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<!DOCTYPE html>
+<html>
+<head>
 <link rel="stylesheet" href="../resources/css/main.css">
-<div id="body">
+<link rel="stylesheet" href="../resources/css/container.css">
+<meta charset="UTF-8">
+<title>제이도서관</title>
+</head>
+<body>
+	<div id="container">
+		<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+		<div id="body">
     <div class="search-loan-container">
         <div class="loan-info">
             <p>대출 가능 도서: 00권</p>
@@ -28,56 +37,25 @@
     </div>
     
     <div id="bookList">
-    <c:out value="${bookList}" />
-        <ul class="book-grid">
+    <ul class="book-grid">
+        <c:forEach var="book" items="${bookList}">
             <li class="book-card">
-                <a href="/book/detail?id=1">
+                <a href="/bookinfo?bookNo=${book.book_no}">
                     <div class="cover">
-                        <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 1" loading="lazy">
+                        <img src="${empty book.image_url ? 'https://placehold.co/120x160/E0E0E0/fff' : book.image_url}" alt="Book Cover">
                     </div>
                     <div class="meta">
-                        <p class="title">책 제목</p>
-                        <p class="publisher">출판사</p>
+                        <p class="title">${book.title_nm}</p>
+                        <p class="publisher">${book.publisher_nm}</p>
                     </div>
                 </a>
             </li>
-
-            <li class="book-card">
-                <a href="/book/detail?id=2">
-                    <div class="cover">
-                        <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 2" loading="lazy">
-                    </div>
-                    <div class="meta">
-                        <p class="title">책 제목</p>
-                        <p class="publisher">출판사</p>
-                    </div>
-                </a>
-            </li>
-
-            <li class="book-card">
-                <a href="/book/detail?id=3">
-                    <div class="cover">
-                        <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 3" loading="lazy">
-                    </div>
-                    <div class="meta">
-                        <p class="title">책 제목</p>
-                        <p class="publisher">출판사</p>
-                    </div>
-                </a>
-            </li>
-
-            <li class="book-card">
-                <a href="/book/detail?id=4">
-                    <div class="cover">
-                        <img src="${pageContext.request.contextPath}/resources/images/booksample.png" alt="책 표지 4" loading="lazy"
-                            onerror="${pageContext.request.contextPath}/resources/images/booksample.png'">
-                    </div>
-                    <div class="meta">
-                        <p class="title">책 제목</p>
-                        <p class="publisher">출판사</p>
-                    </div>
-                </a>
-            </li>
-        </ul>
+        </c:forEach>
+    </ul>
     </div>
 </div>
+
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	</div>
+</body>
+</html>

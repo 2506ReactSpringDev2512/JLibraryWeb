@@ -177,6 +177,29 @@ public class BookDAO implements InterfaceBookDAO{
 		return result;
 	}
 
+	public List<Book> selectRandomUnavailableBooks(Connection conn) {
+		List<Book> books = new ArrayList<>();
+		String sql = "SELECT * FROM (SELECT * FROM BOOK_TBL WHERE LEND_YN = '대여불가' ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM <= 4";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Book b = new Book();
+                b.setBook_no(rs.getInt("BOOK_NO"));
+                b.setTitle_nm(rs.getString("TITLE_NM"));
+                b.setPublisher_nm(rs.getString("PUBLISHER_NM"));
+                b.setImage_url(rs.getString("IMAGE_URL"));
+                books.add(b);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
+	}
+
 	
 	
 }

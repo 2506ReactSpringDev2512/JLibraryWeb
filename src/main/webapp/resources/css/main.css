@@ -87,6 +87,10 @@
     border-bottom: 1px solid #d0d0d0;
 }
 
+#bestText a {
+	text-decoration: none;
+}
+
 #text {
     font-size: 18px;
     font-weight: 600;

@@ -160,5 +160,15 @@ public class BookService implements InterfaceBookService {
 		return result;
 	}
 
+	public List<Book> getRandomUnavailableBooks() {
+		List<Book> books = new ArrayList<>();
+        try (Connection conn = jdbcTemplate.getConnection()) {
+            books = bDao.selectRandomUnavailableBooks(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+	}
+
 
 }
