@@ -38,11 +38,25 @@
         <div class="prev-next">
             <div class="prev-next-item">
                 <span>이전글</span>
+                <c:choose>
+            <c:when test="${not empty prevNotice}">
                 <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${prevNotice.noticeNo}">${prevNotice.noticeSubject}</a>
+            </c:when>
+            <c:otherwise>
+                <span>이전글이 없습니다.</span>
+            </c:otherwise>
+        </c:choose>
             </div>
             <div class="prev-next-item">
                 <span>다음글</span>
+                <c:choose>
+            <c:when test="${not empty nextNotice}">
                 <a href="${pageContext.request.contextPath}/notice/detail?noticeNo=${nextNotice.noticeNo}">${nextNotice.noticeSubject}</a>
+            </c:when>
+            <c:otherwise>
+                <span>다음글이 없습니다.</span>
+            </c:otherwise>
+        </c:choose>
             </div>
         </div>
 	

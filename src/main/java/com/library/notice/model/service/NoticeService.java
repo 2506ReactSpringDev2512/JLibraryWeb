@@ -112,17 +112,16 @@ public class NoticeService implements InterfaceNoticeService{
 	}
 
 	public Notice selectNextNoticeByNo(int noticeNo) {
-		Notice nextNotice = null;
-		
-		try {
-			Connection conn = jdbcTemplate.getConnection();
-			nextNotice = nDao.selectNextNotice(noticeNo, conn);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+    Notice nextNotice = null;
+    
+    try {
+        Connection conn = jdbcTemplate.getConnection();
+        nextNotice = nDao.selectNextNotice(noticeNo, conn);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return nextNotice;
 	}
 
 
