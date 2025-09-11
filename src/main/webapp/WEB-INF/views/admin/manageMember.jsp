@@ -50,9 +50,9 @@
                     <thead>
                         <tr>
                             <th>아이디</th>
-                            <th>비밀번호</th>
                             <th>이름</th>
                             <th>전화번호</th>
+                            <th>성별</th>
                             <th>나이</th>
                             <th>성별</th>
                             <th>대출 도서 수</th>

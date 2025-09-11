@@ -12,6 +12,15 @@ public class LendInfo {
 	private String author;
 	private String publisher;
 	
+	private boolean overdue;
+	
+	public boolean isOverdue() {
+	    return overdue;
+	}
+
+	public void setOverdue(boolean overdue) {
+	    this.overdue = overdue;
+	}
 	
 	public String getTitle_nm() {
 		return title_nm;

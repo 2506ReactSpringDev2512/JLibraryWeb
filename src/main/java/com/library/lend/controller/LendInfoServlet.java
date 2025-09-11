@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import com.library.lend.model.service.LendInfoService;
@@ -42,6 +43,19 @@ public class LendInfoServlet extends HttpServlet {
         LendInfoService lendService = new LendInfoService();
         // 대출 정보 가져오기
         List<LendInfo> lendList = lendService.getLendInfoList(memberId, currentPage, pageSize);
+        
+        // 연체 여부 계산
+        Date now = new Date();
+        for(LendInfo li : lendList) {
+            if(li.getReturn_date() != null) {
+                boolean overdue = li.getReturn_date().before(new java.sql.Date(now.getTime()));
+                li.setOverdue(overdue); // LendInfo에 overdue 필드 필요
+            } else {
+                li.setOverdue(false);
+            }
+        }
+        
+        
         int totalCount = lendService.getLendInfoTotalCount(memberId);
         int totalPage = (int) Math.ceil((double) totalCount / pageSize);
 

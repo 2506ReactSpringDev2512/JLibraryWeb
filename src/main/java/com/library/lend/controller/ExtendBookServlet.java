@@ -30,7 +30,7 @@ public class ExtendBookServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-        String memberId = (String) request.getSession().getAttribute("loginMember");
+        String memberId = (String) request.getSession().getAttribute("memberId");
         
         LendInfoService lendService = new LendInfoService();
         boolean success = lendService.extendBook(memberId, bookNo);

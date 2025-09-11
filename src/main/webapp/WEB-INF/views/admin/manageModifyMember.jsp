@@ -18,11 +18,13 @@
                 <form action="/admin/modify-member" method="post">
                     <div class="form-row">
                         <label>아이디</label>
-                        <input type="text" value="${memberId}" readonly>
+                        <input type="text" value="${member.memberId}" readonly>
                     </div>
 
+
                     <div class="form-row">
-                        <input type="text" value="${memberName}" pattern="[가-힣]{2,5}" readonly>
+                    <label>이름</label>
+                        <input type="text" value="${member.memberName}" pattern="[가-힣]{2,5}" readonly>
                     </div>
 
                     <div class="form-row">

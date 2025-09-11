@@ -37,14 +37,10 @@
 						</div>
                     </div>
                     <!-- 연체 여부 표시 -->
-                    <c:choose>
-                        <c:when test="${book.return_date < now}">
+                    <c:if test="${book.overdue}">
                             <span class="overdue">연체 도서</span>
-                        </c:when>
-                        <c:otherwise>
+					</c:if>
                             <span></span>
-                        </c:otherwise>
-                    </c:choose>
                 </div>
             </c:forEach>
             </div>
