@@ -139,19 +139,13 @@ public class MemberDAO implements InterfaceMemberDAO{
 
 	
 	public int modifyMember(Member member, Connection conn) throws SQLException {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
 		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ? WHERE MEMBER_ID = ?";
-		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, member.getMemberPwd());
-		pstmt.setString(2, member.getPhone());
-		pstmt.setString(3, member.getMemberId());
-		
-		result = pstmt.executeUpdate();
-		pstmt.close();
-		conn.close();
-		return result;
+	    try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+	        pstmt.setString(1, member.getMemberPwd());
+	        pstmt.setString(2, member.getPhone());
+	        pstmt.setString(3, member.getMemberId());
+	        return pstmt.executeUpdate();
+	    }
 	}
 
 	public String selectPassword(Connection conn, String memberId, String memberName, String memberPhone) throws SQLException {

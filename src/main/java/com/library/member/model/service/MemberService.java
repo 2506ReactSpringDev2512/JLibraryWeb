@@ -62,21 +62,26 @@ public class MemberService implements InterfaceMemberService{
 	}
 
 	
-	public int modifyMember(Member member) {
-		int result = 0;
-		try {
-			Connection conn = jdbcTemplate.getConnection();
-			result = mDao.modifyMember(member, conn);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
+	public int modifyMember(Member member) throws SQLException {
+		Connection conn = null;
+	    int result = 0;
+	    try {
+	        conn = jdbcTemplate.getConnection();
+	        conn.setAutoCommit(false);
+
+	        result = mDao.modifyMember(member, conn);
+
+	        if(result > 0) conn.commit();
+	        else conn.rollback();
+	    } catch(SQLException e) {
+	        if(conn != null) conn.rollback();
+	        throw e;
+	    } finally {
+	        if(conn != null) conn.close();
+	    }
+	    return result;
 	}
 
-	public int modifyMember(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public String findPassword(String memberId, String memberName, String memberPhone) {
 		Connection conn = null;
